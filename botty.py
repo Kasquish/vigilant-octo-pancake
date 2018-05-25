@@ -294,6 +294,11 @@ async def hello(ctx):
     result = random.choice(hiList)
     await tumble.say(result)
     print("Hi called!")
+    
+@tumble.command(pass_context = True)
+async def ping(ctx):
+    await tumble.say("Pong! ♪")
+    print("Ping called!")
 
 tumble.remove_command('help')
 
