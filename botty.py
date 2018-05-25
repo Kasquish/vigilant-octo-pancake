@@ -21,6 +21,8 @@ miningList = []
 thanksList = []
 hiList = []
 
+bot_token = os.environ['BOT_TOKEN']
+
 starttime = datetime.datetime.now()
 
 ##last6 = [0,0]
@@ -434,4 +436,4 @@ async def background_task():
 
 tumble.loop.create_task(background_task())
 
-tumble.run(process.env.BOT_TOKEN)
+tumble.run(bot_token)
