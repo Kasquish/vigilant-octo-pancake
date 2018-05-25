@@ -1,0 +1,10 @@
+Hammer 3
+Substitute Doll 3
+Mushroom 5
+Mini Mushroom 5
+Mega Mushroom 4
+Telescope 4
+Basin 3
+Boulder 4
+Capsule 4
+Warp Pipe 3
