@@ -262,8 +262,11 @@ async def makeafile(ctx):
     if ctx.message.author.id == "161982345207873536":
         outfile = open("testytesty.txt","w")
         print("Booooo!",file=outfile)
+        await tumble.say("I tried to do it!")
         outfile.close()
         print("I tried!")
+    else:
+        await tumble.say("Whoa! How did you know this was a thing? You're not Namadu!")
             
 
 ######################################################
