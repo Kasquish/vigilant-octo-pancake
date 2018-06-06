@@ -256,6 +256,14 @@ Or you can trade it with someone else!""")
 ##    result = random.choice(chanceList)
 ##    await tumble.upload("chance/"+result)
 ##    print("Chance called!")    
+
+@tumble.command(pass_context = True)
+async def makeafile(ctx):
+    if ctx.message.author.id == "161982345207873536":
+        outfile = open("testytesty.txt","w")
+        print("Booooo!",file=outfile)
+        outfile.close()
+        print("I tried!")
             
 
 ######################################################
