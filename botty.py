@@ -223,27 +223,31 @@ async def mining(ctx):
 ######################  EVENTS  ######################
 ######################################################
 
+#@tumble.command(pass_context = True)
+#async def freegift(ctx):
+#    if ctx.message.channel.id != "373259889826332673":
+#        await tumble.say("Please call .freegift in the Trading channel!")
+#    else:
+#        idList = []
+#        listFromFile("freegift_ids.txt",idList)
+#        if str(ctx.message.author.id) in idList:
+#            await tumble.say("You already got your free coupon! I only have so many to go around...")
+#        else:
+#            ticketList = []
+#            listFromFile("freegift.txt",ticketList)
+#            ticket = random.choice(ticketList)
+#            await tumble.say(
+#ctx.message.author.name + """, your free coupon is...
+#the """+ticket+""" Coupon!
+#Keep this in your items - you can redeem it to play with """+ticket+"""!
+#Or you can trade it with someone else!""")
+#            with open("freegift_ids.txt","a") as outFile:
+#                print(str(ctx.message.author.id),file=outFile)
+#    print("Freegift called!")
+
 @tumble.command(pass_context = True)
 async def freegift(ctx):
-    if ctx.message.channel.id != "373259889826332673":
-        await tumble.say("Please call .freegift in the Trading channel!")
-    else:
-        idList = []
-        listFromFile("freegift_ids.txt",idList)
-        if str(ctx.message.author.id) in idList:
-            await tumble.say("You already got your free coupon! I only have so many to go around...")
-        else:
-            ticketList = []
-            listFromFile("freegift.txt",ticketList)
-            ticket = random.choice(ticketList)
-            await tumble.say(
-ctx.message.author.name + """, your free coupon is...
-the """+ticket+""" Coupon!
-Keep this in your items - you can redeem it to play with """+ticket+"""!
-Or you can trade it with someone else!""")
-            with open("freegift_ids.txt","a") as outFile:
-                print(str(ctx.message.author.id),file=outFile)
-    print("Freegift called!")
+     await tumble.say("Sorry, bud, that ship has sailed... There are no more free gift coupons left.\nBut maybe I'll have something else for you later?")
 
 
 ######################################################
@@ -258,15 +262,11 @@ Or you can trade it with someone else!""")
 ##    print("Chance called!")    
 
 @tumble.command(pass_context = True)
-async def makeafile(ctx):
+async def itsamenammio(ctx):
     if ctx.message.author.id == "161982345207873536":
-        outfile = open("testytesty.txt","w")
-        print("Booooo!",file=outfile)
-        await tumble.say("I tried to do it!")
-        outfile.close()
-        print("I tried!")
+        await tumble.say("Hey, it is you!")
     else:
-        await tumble.say("Whoa! How did you know this was a thing? You're not Namadu!")
+        await tumble.say("No you're not, silly!")
             
 
 ######################################################
