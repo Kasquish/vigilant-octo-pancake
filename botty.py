@@ -57,7 +57,7 @@ async def on_ready():
     for filename in os.listdir("chance"):
         chanceList.append(filename)
 
-    
+    prevStarLoc = 0
 
     
 
