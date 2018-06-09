@@ -21,6 +21,8 @@ miningList = []
 thanksList = []
 hiList = []
 
+prevStarLoc = 0
+
 bot_token = os.environ['BOT_TOKEN']
 
 starttime = datetime.datetime.now()
@@ -127,6 +129,9 @@ async def halfmove(ctx):
 @tumble.command(pass_context = True)
 async def maliestar(ctx):
     result = random.randint(1,7)
+    while result == prevStarLoc:
+        result = random.randint(1,7)
+    prevStarLoc = result
     await tumble.say("The Star is now at position... [ **"+  str(result)  +"** ]")
     print("Maliestar called!")
 
