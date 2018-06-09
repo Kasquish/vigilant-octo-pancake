@@ -122,6 +122,13 @@ async def halfmove(ctx):
     print("Halfmove called!")
     
 
+    
+#####D7#####
+@tumble.command(pass_context = True)
+async def maliestar(ctx):
+    result = random.randint(1,7)
+    await tumble.say("The Star is now at position... [ **"+  str(result)  +"** ]")
+    print("Maliestar called!")
 
 #####D10#####
     
