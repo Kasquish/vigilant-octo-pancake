@@ -228,7 +228,7 @@ async def maliestar(ctx):
     prevStarLoc[0] = result
     
     imagey = malieStarList[result]
-    await tumble.say("The Star is now in location " + str(result+1) + "!")
+    await tumble.say("The Star is now in location " + imagey[-5] + "!")
     await tumble.upload("maliestar/"+imagey)
     print("Maliestar called!")
 
