@@ -20,8 +20,9 @@ capsuleList = []
 miningList = []
 thanksList = []
 hiList = []
+malieStarList = []
 
-#prevStarLoc = 0
+prevStarLoc = [-1]
 
 bot_token = os.environ['BOT_TOKEN']
 
@@ -56,6 +57,8 @@ async def on_ready():
 
     for filename in os.listdir("chance"):
         chanceList.append(filename)
+    for filename in os.listdir("maliestar"):
+        malieStarList.append(filename)
 
     prevStarLoc = 0
 
@@ -122,18 +125,6 @@ async def halfmove(ctx):
     result = random.randint(1,3)
     await tumble.say("From 1-3, you got a...\n[ **"+  str(result)  +"** ]")
     print("Halfmove called!")
-    
-
-    
-#####D7#####
-@tumble.command(pass_context = True)
-async def maliestar(ctx):
-    result = random.randint(1,7)
-    #while result == prevStarLoc:
-    #    result = random.randint(1,7)
-    #prevStarLoc = result
-    await tumble.say("The Star is now at position... [ **"+  str(result)  +"** ]")
-    print("Maliestar called!")
 
 #####D10#####
     
@@ -229,6 +220,16 @@ async def mining(ctx):
     await tumble.say("After some digging, you found...\n[ **"+  str(result)  +"** ]")
     print("Mining called!")
 
+@tumble.command(pass_context = True)
+async def maliestar(ctx):
+    result = random.randint(0,6)
+    while result == prevStarLoc[0]:
+        result = random.randint(0,6)
+    prevStarLoc[0] = result
+    
+    imagey = malieStarList[result]
+    await tumble.upload("maliestar/"+imagey)
+    print("Maliestar called!")
 
 
 ######################################################
