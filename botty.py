@@ -228,6 +228,7 @@ async def maliestar(ctx):
     prevStarLoc[0] = result
     
     imagey = malieStarList[result]
+    await tumble.say("The Star is now in location " + str(result+1) + "!")
     await tumble.upload("maliestar/"+imagey)
     print("Maliestar called!")
 
@@ -317,7 +318,7 @@ async def hi(ctx):
 async def hello(ctx):
     result = random.choice(hiList)
     await tumble.say(result)
-    print("Hi called!")
+    print("Hello called!")
     
 @tumble.command(pass_context = True)
 async def ping(ctx):
