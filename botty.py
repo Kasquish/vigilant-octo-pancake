@@ -78,17 +78,11 @@ async def on_ready():
 
 #####D6#####
 
-@tumble.command(pass_context = True)
+@tumble.command(pass_context = True, name = "move", aliases = ["randomroll","rollasixsideddiepleasetumble"])
 async def move(ctx):
     result = random.randint(1,6)
     await tumble.say("From 1-6, you got a...\n[ **"+  str(result)  +"** ]")
     print("Move called!")
-    
-@tumble.command(pass_context = True)
-async def randomroll(ctx):
-    result = random.randint(1,6)
-    await tumble.say("From 1-6, you got a...\n[ **"+  str(result)  +"** ]")    
-    print("Randomroll called!")
 
 #####2D6#####
 
