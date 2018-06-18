@@ -78,7 +78,7 @@ async def on_ready():
 
 #####D6#####
 
-@tumble.command(pass_context = True, name = "move", aliases = ["randomroll","rollasixsideddiepleasetumble"])
+@tumble.command(pass_context = True, name = "move", aliases = ["randomroll","roll","d6","6d","curry","curryroll","rollasixsideddiepleasetumble"])
 async def move(ctx):
     result = random.randint(1,6)
     await tumble.say("From 1-6, you got a...\n[ **"+  str(result)  +"** ]")
@@ -86,7 +86,7 @@ async def move(ctx):
 
 #####2D6#####
 
-@tumble.command(pass_context = True)
+@tumble.command(pass_context = True, name = "mushroom", aliases = ["mega","mush","megamush","megamushroom","2d6","doubleroll","doublemove"])
 async def mushroom(ctx):
     result1 = random.randint(1,6)
     result2 = random.randint(1,6)
@@ -98,23 +98,10 @@ async def mushroom(ctx):
     await tumble.say(sayString)
     print("Mushroom called!")
 
-@tumble.command(pass_context = True)
-async def mega(ctx):
-    result1 = random.randint(1,6)
-    result2 = random.randint(1,6)
-    sayString = ""
-    sayString += "With two dice, you rolled "+str(result1)+" and "+str(result2)+"! The total is...\n"
-    sayString += "[ **"+  str(result1+result2)  +"** ]\n"
-    if result1 == result2:
-        sayString += "*Hey, you got doubles!*"
-    await tumble.say(sayString)
-    print("Mega called!")
-
-
 
 #####D3#####
 
-@tumble.command(pass_context = True)
+@tumble.command(pass_context = True, name = "halfmove", aliases = ["halfroll","half","d3","mini","minimush","minimushroom"])
 async def halfmove(ctx):
     result = random.randint(1,3)
     await tumble.say("From 1-3, you got a...\n[ **"+  str(result)  +"** ]")
@@ -122,7 +109,7 @@ async def halfmove(ctx):
 
 #####D10#####
     
-@tumble.command(pass_context = True)
+@tumble.command(pass_context = True, name = "d10", aliases = ["grape","grapes","graperoll","grapesroll","cupcake","cupcakes","cupcakeroll","cupcakesroll"])
 async def d10(ctx):
     result = random.randint(1,10)
     await tumble.say("From 1-10, you got a...\n[ **"+  str(result)  +"** ]")
@@ -132,7 +119,7 @@ async def d10(ctx):
 
 #####D20#####
     
-@tumble.command(pass_context = True)
+@tumble.command(pass_context = True, name = "d20")
 async def d20(ctx):
     result = random.randint(1,20)
     await tumble.say("From 1-20, you got a...\n[ **"+  str(result)  +"** ]")
@@ -145,7 +132,7 @@ async def d20(ctx):
 
 #####D30#####
     
-@tumble.command(pass_context = True)
+@tumble.command(pass_context = True, name = "d30")
 async def d30(ctx):
     result = random.randint(1,30)
     await tumble.say("From 1-30, you got a...\n[ **"+  str(result)  +"** ]")
@@ -154,17 +141,17 @@ async def d30(ctx):
 
 #####D50#####
     
-@tumble.command(pass_context = True)
+@tumble.command(pass_context = True, name = "d50")
 async def d50(ctx):
-    result = random.randint(1,30)
-    await tumble.say("From 1-30, you got a...\n[ **"+  str(result)  +"** ]")
+    result = random.randint(1,50)
+    await tumble.say("From 1-50, you got a...\n[ **"+  str(result)  +"** ]")
     print("d50 called!")
 
 
 
 #####Thwomp#####
     
-@tumble.command(pass_context = True)
+@tumble.command(pass_context = True, name = "thwomp", aliases = ["thwomps","sslthwomp","sslthwomps"])
 async def thwomp(ctx):
     thwompList = ["Blue","Green","Violet"]
     sayString = ""
@@ -178,7 +165,7 @@ async def thwomp(ctx):
 
 #####SSLBlock##### The block in Shifting Sand Land that gives 5-30 coins!
     
-@tumble.command(pass_context = True)
+@tumble.command(pass_context = True, name = "sslblock", aliases = ["sslcoinblock"])
 async def sslblock(ctx):
     result = random.randint(5,30)
     await tumble.say("You bashed the block, and out fell...\n[ **"+  str(result)  +" coins!** ]")
@@ -190,7 +177,7 @@ async def sslblock(ctx):
 ######################  WHEELS  ######################
 ######################################################
 
-@tumble.command(pass_context = True)
+@tumble.command(pass_context = True, name = "chance", aliases = ["chancespace","chancecard","drawchance"])
 async def chance(ctx):
     result = random.choice(chanceList)
     await tumble.upload("chance/"+result)
@@ -202,19 +189,19 @@ async def capsule(ctx):
     await tumble.say("You opened the capsule, and found...\n[ **"+  str(result) +"** ]")
     print("Capsule called!")
     
-@tumble.command(pass_context = True)
+@tumble.command(pass_context = True, name = "torracat", aliases = ["torra","torraspace","torracatspace"])
 async def torracat(ctx):
     result = random.choice(torracatList)
     await tumble.say("Torracat decrees that the following shall happen!\n[ **"+  str(result)  +"** ]")
     print("Torracat called!")
     
-@tumble.command(pass_context = True)
+@tumble.command(pass_context = True, name = "mining", aliases = ["mine","excavate","excavation","minespace","miningspace","excavationspace"])
 async def mining(ctx):
     result = random.choice(miningList)
     await tumble.say("After some digging, you found...\n[ **"+  str(result)  +"** ]")
     print("Mining called!")
 
-@tumble.command(pass_context = True)
+@tumble.command(pass_context = True, name = "maliestar", aliases = ["maliestarspace","maliegardenstar"])
 async def maliestar(ctx):
     result = random.randint(0,6)
     while result == prevStarLoc[0]:
@@ -288,31 +275,25 @@ async def canikickyou(ctx):
     await tumble.say("I hope I can come back for another party, though!")
     print("CanIKickYou called!")
 
-@tumble.command(pass_context = True)
+@tumble.command(pass_context = True, name = "annoying", aliases = ["youreannoying","shutup","ihateyou"])
 async def annoying(ctx):
     await tumble.say("Aww, really? Sorry to bother you, then!")
     await tumble.say("B-but I'll go teach someone else how to host a party, and bring 'em over!")
     await tumble.say("I hope you have a nice day! :heart:")
     print("Annoying called...")
 
-@tumble.command(pass_context = True)
+@tumble.command(pass_context = True, name = "thanks", aliases = ["thankyou","gracias","arigato","arigatou"])
 async def thanks(ctx):
     result = random.choice(thanksList)
     await tumble.say(result)
     print("Thanks called!")
 
-@tumble.command(pass_context = True)
+@tumble.command(pass_context = True, name = "hi", aliases = ["hello","hiya","goodmorning","goodday","goodafternoon","goodevening"])
 async def hi(ctx):
-    
     result = random.choice(hiList)
     await tumble.say(result)
     print("Hi called!")
 
-@tumble.command(pass_context = True)
-async def hello(ctx):
-    result = random.choice(hiList)
-    await tumble.say(result)
-    print("Hello called!")
     
 @tumble.command(pass_context = True)
 async def ping(ctx):
