@@ -1,2 +1,2 @@
 discord.py
-psychopg2
+psycopg2
