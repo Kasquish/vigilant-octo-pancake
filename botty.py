@@ -300,11 +300,11 @@ async def torracatrevolution(ctx,*args):
             for num in args:
                 sum += int(num)
             sum //= len(args)
-            tumble.say("Everyone now has " + str(sum) + " coins!")
+            await tumble.say("Everyone now has " + str(sum) + " coins!")
         else:
-            tumble.say("Please specify everyone's total number of coins!\nUsage example: **.torracatrevolution 10 20 15 20**")
+            await tumble.say("Please specify everyone's total number of coins!\nUsage example: **.torracatrevolution 10 20 15 20**")
     except ValueError:
-        tumble.say(num+" isn't a valid number of coins!\nUsage example: **.torracatrevolution 10 20 15 20**")
+        await tumble.say(num+" isn't a valid number of coins!\nUsage example: **.torracatrevolution 10 20 15 20**")
                 
                 
                 
