@@ -79,7 +79,7 @@ async def on_ready():
 #####D#####
 
 @tumble.command(pass_context = True, name = "roll", aliases = ["d"])
-async def roll(ctx,arg):
+async def roll(ctx,*,arg):
     if arg == "":
         arg = "6"
     try:
