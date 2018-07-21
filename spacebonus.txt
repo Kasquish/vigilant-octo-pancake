@@ -1,8 +1,8 @@
-Blue Spaces
-Red Spaces
-? Spaces
-Torracat Spaces
-Chance Spaces
-Friendship Spaces
-Excavation Spaces
-Warp Spaces
+Blue Spaces Landed On
+Red Spaces Landed On
+? Spaces Landed On
+Torracat Spaces Landed On
+Chance Spaces Landed On
+Friendship Spaces Landed On
+Excavation Spaces Landed On
+Warp Spaces Landed On
