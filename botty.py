@@ -230,6 +230,11 @@ async def maliestar(ctx):
     await tumble.say("The Star is now in location " + imagey[-5] + "!")
     await tumble.upload("maliestar/"+imagey)
     print("Maliestar called!")
+
+
+######################################################
+####################  UTILITIES  #####################
+######################################################
     
     
 @tumble.command(pass_context = True, name = "torrashuffle", aliases = ["torracatshuffle","shuffleposition","shufflepositions","positionshuffle"])    
@@ -284,8 +289,25 @@ async def itemshuffle(ctx,*args):
             tumbleSpeech += listOrig[i] + ", give your item to " + listShuffled[i] + "!\n"
         
     await tumble.say(tumbleSpeech)
-
-
+    
+    
+    
+@tumble.command(pass_context = True, name = "torracatrevolution", aliases = ["torrarevolution","torrarev","torracatrev","revolution","communism","torracommunism","torracatcommunism"])
+async def torracatrevolution(ctx,*args):
+    try:
+        if len(args) > 0:
+            sum = 0
+            for num in args:
+                sum += int(num)
+            sum //= len(args)
+            tumble.say("Everyone now has " + str(sum) + " coins!")
+        else:
+            tumble.say("Please specify everyone's total number of coins!\nUsage example: **.torracatrevolution 10 20 15 20**")
+    except ValueError:
+        tumble.say(num+" isn't a valid number of coins!\nUsage example: **.torracatrevolution 10 20 15 20**"")
+                
+                
+                
 ######################################################
 ######################  EVENTS  ######################
 ######################################################
