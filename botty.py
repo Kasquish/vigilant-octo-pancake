@@ -212,6 +212,35 @@ async def maliestar(ctx):
     await tumble.say("The Star is now in location " + imagey[-5] + "!")
     await tumble.upload("maliestar/"+imagey)
     print("Maliestar called!")
+    
+    
+@tumble.command(pass_context = True, name = "torrashuffle", aliases = ["torracatshuffle","shuffleposition","shufflepositions","positionshuffle"])    
+async def torrashuffle(ctx,*args):
+    if len(args) > 0:
+        listOrig = list(args)
+        listShuffled = listOrig.copy()
+        random.shuffle(listShuffled)
+    else:
+        listOrig = ["Player 1","Player 2","Player 3","Player 4"]
+        listShuffled = listOrig.copy()
+        random.shuffle(listShuffled)
+    
+    listMoved = [] #Keeping a list of which players have already moved isn't the most efficient way to do this, but...
+                   #Most situations should only have an N of 8 or fewer.
+                   #Proposal: the shuffled list is actually just a list of indices which can be linked back to the original names.
+    tumbleSpeech = ""
+    for i in range(len(listOrig)):
+        if listOrig[i] == listShuffled[i]:
+            tumbleSpeech += listOrig[i] + " doesn't move!\n"
+        else:
+            tumbleSpeech += listOrig[i] + " moves to " + listShuffled[i] + "'s "
+            if listShuffled[i] in listMoved:
+                tumbleSpeech += "original position!\n"
+            else:
+                tumbleSpeech += "position!\n"
+            listMoved.append(listOrig[i])
+        
+    await tumble.say(tumbleSpeech)
 
 
 ######################################################
