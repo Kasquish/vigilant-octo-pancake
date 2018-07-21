@@ -241,6 +241,31 @@ async def torrashuffle(ctx,*args):
             listMoved.append(listOrig[i])
         
     await tumble.say(tumbleSpeech)
+    
+
+    
+@tumble.command(pass_context = True, name = "itemshuffle", aliases = ["shuffleitem","shuffleitems"])    
+async def itemshuffle(ctx,*args):
+    if len(args) > 0:
+        listOrig = list(args)
+        listShuffled = listOrig.copy()
+        random.shuffle(listShuffled)
+    else:
+        listOrig = ["Player 1","Player 2","Player 3","Player 4"]
+        listShuffled = listOrig.copy()
+        random.shuffle(listShuffled)
+    
+    listMoved = [] #Keeping a list of which players have already moved isn't the most efficient way to do this, but...
+                   #Most situations should only have an N of 8 or fewer.
+                   #Proposal: the shuffled list is actually just a list of indices which can be linked back to the original names.
+    tumbleSpeech = ""
+    for i in range(len(listOrig)):
+        if listOrig[i] == listShuffled[i]:
+            tumbleSpeech += listOrig[i] + ", you can keep your item.\n"
+        else:
+            tumbleSpeech += listOrig[i] + ", give your item to " + listShuffled[i] + "!"
+        
+    await tumble.say(tumbleSpeech)
 
 
 ######################################################
