@@ -18,9 +18,15 @@ chanceList = []
 torracatList = []
 capsuleList = []
 miningList = []
+
+spacebonusList = []
+flatbonusList = []
+otherbonusList = []
+
+malieStarList = []
+
 thanksList = []
 hiList = []
-malieStarList = []
 
 prevStarLoc = [-1]
 
@@ -218,6 +224,26 @@ async def mining(ctx):
     result = random.choice(miningList)
     await tumble.say("After some digging, you found...\n[ **"+  str(result)  +"** ]")
     print("Mining called!")
+    
+@tumble.command(pass_context = True, name = "bonus1", aliases = ["spaceaward","spacesbonus","spacesaward","spacebonus","award1"])
+async def bonus1(ctx):
+    result = random.choice(miningList)
+    await tumble.say("The first award is...\n[ **"+  str(result)  +"** ]")
+    print("bonus1 called!") 
+    
+@tumble.command(pass_context = True, name = "bonus2", aliases = ["miscaward","miscbonus","otheraward","otherbonus","award2"])
+async def bonus2(ctx):
+    result = random.choice(miningList)
+    await tumble.say("The second award is...\n[ **"+  str(result)  +"** ]")
+    print("bonus2 called!")        
+    
+@tumble.command(pass_context = True, name = "bonus3", aliases = ["flataward","flatsbonus","flatsaward","flatbonus","award3"])
+async def bonus3(ctx):
+    result = random.choice(miningList)
+    await tumble.say("The third award is...\n[ **"+  str(result)  +"** ]")
+    print("bonus3 called!")     
+    
+    
 
 @tumble.command(pass_context = True, name = "maliestar", aliases = ["maliestarspace","maliegardenstar"])
 async def maliestar(ctx):
