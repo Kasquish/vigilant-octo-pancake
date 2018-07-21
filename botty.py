@@ -60,6 +60,10 @@ async def on_ready():
     listFromFile("mining.txt",miningList)
     listFromFile("thanks.txt",thanksList)
     listFromFile("hi.txt",hiList)
+    
+    listFromFile("spacebonus.txt",spacebonusList)
+    listFromFile("otherbonus.txt",otherbonusList)
+    listFromFile("flatbonus.txt",flatbonusList)
 
     for filename in os.listdir("chance"):
         chanceList.append(filename)
