@@ -263,7 +263,7 @@ async def itemshuffle(ctx,*args):
         if listOrig[i] == listShuffled[i]:
             tumbleSpeech += listOrig[i] + ", you can keep your item.\n"
         else:
-            tumbleSpeech += listOrig[i] + ", give your item to " + listShuffled[i] + "!"
+            tumbleSpeech += listOrig[i] + ", give your item to " + listShuffled[i] + "!\n"
         
     await tumble.say(tumbleSpeech)
 
