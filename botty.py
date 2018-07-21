@@ -76,9 +76,23 @@ async def on_ready():
 ######################   DICE   ######################
 ######################################################
 
+#####D#####
+
+@tumble.command(pass_context = True, name = "roll", aliases = ["d"])
+async def roll(ctx,arg):
+    if arg == "":
+        arg = "6"
+    try:
+        num = int(arg)
+        result = random.randint(1,num)
+        await tumble.say("From 1-"+str(num)+", you got a...\n[ **"+  str(result)  +"** ]")
+    except ValueError:
+        await tumble.say("I-I don't have any dice like that...")
+    print("Roll called with " + arg + "!")
+
 #####D6#####
 
-@tumble.command(pass_context = True, name = "move", aliases = ["randomroll","roll","d6","6d","curry","curryroll","rollasixsideddiepleasetumble"])
+@tumble.command(pass_context = True, name = "move", aliases = ["randomroll","d6","6d","curry","curryroll","rollasixsideddiepleasetumble"])
 async def move(ctx):
     result = random.randint(1,6)
     await tumble.say("From 1-6, you got a...\n[ **"+  str(result)  +"** ]")
