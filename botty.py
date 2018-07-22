@@ -342,14 +342,15 @@ async def sslblock(ctx):
     
 ##### Super Training Stadium #####
 
-@tumble.command(pass_context = True, name = "machokes", aliases = ["machoketoss","machoke"])
-async def machokes(ctx):
+@tumble.command(pass_context = True, name = "machoketoss", aliases = ["machokes","machoke"])
+async def machoketoss(ctx):
     initlisty = ["lower left","lower right","upper right","upper left"]
-    locationIndex = random.randint(0,3)
-    tumbleSpeech = "The Machoke balled you up and threw you to the **" + initlisty[locationIndex] + "** corner's ? Space!\n"
-    tumbleSpeech += "*(If you're already there, go to the " + initlisty[(locationIndex+1)%4] + " space instead.)*"
+    initindices = [0,1,2,3]
+    random.shuffle(initindices)
+    tumbleSpeech = "The Machoke balled you up and threw you to the **" + initlisty[initindices[0]] + "** corner's ? Space!\n"
+    tumbleSpeech += "*(If you're already there, go to the " + initlisty[initindices[1]] + " space instead.)*"
     await tumble.say(tumbleSpeech)
-    print("machokes called!")
+    print("machoketoss called!")
     
 @tumble.command(pass_context = True, name = "sportsball", aliases = ["stsballs","stsball","sportsballs","stadiumball","stadiumballs"])
 async def sportsball(ctx):
