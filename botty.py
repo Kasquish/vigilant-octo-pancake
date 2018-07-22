@@ -346,7 +346,7 @@ async def sslblock(ctx):
 async def machokes(ctx):
     initlisty = ["lower left","lower right","upper right","upper left"]
     locationIndex = random.randint(0,3)
-    tumbleSpeech = "The Machoke balled you up and threw you to the **" + initlisty[locationIndex] + "** corner's ? Space!\n")
+    tumbleSpeech = "The Machoke balled you up and threw you to the **" + initlisty[locationIndex] + "** corner's ? Space!\n"
     tumbleSpeech += "*(If you're already there, go to the " + initlisty[(locationIndex+1)%4] + " space instead.)*"
     await tumble.say(tumbleSpeech)
     print("machokes called!")
