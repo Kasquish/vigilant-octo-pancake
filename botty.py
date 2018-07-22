@@ -19,6 +19,8 @@ torracatList = []
 capsuleList = []
 miningList = []
 
+randomitemList = []
+
 spacebonusList = []
 flatbonusList = []
 otherbonusList = []
@@ -55,11 +57,15 @@ def listFromFile(filename,listy):
 @tumble.event
 async def on_ready():
 
+    print("Preparing lists...")
     listFromFile("torracat.txt",torracatList)
     listFromFile("capsule.txt",capsuleList)
     listFromFile("mining.txt",miningList)
+    
     listFromFile("thanks.txt",thanksList)
     listFromFile("hi.txt",hiList)
+    
+    listFromFile("randomitem.txt",randomitemList)
     
     listFromFile("spacebonus.txt",spacebonusList)
     listFromFile("otherbonus.txt",otherbonusList)
@@ -69,6 +75,7 @@ async def on_ready():
         chanceList.append(filename)
     for filename in os.listdir("maliestar"):
         malieStarList.append(filename)
+    print("Lists prepared!")
 
     prevStarLoc = 0
 
@@ -228,6 +235,12 @@ async def mining(ctx):
     result = random.choice(miningList)
     await tumble.say("After some digging, you found...\n[ **"+  str(result)  +"** ]")
     print("Mining called!")
+
+@tumble.command(pass_context = True, name = "randomitem", aliases = ["itemwheel","item"])
+async def randomitem(ctx):
+    result = random.choice(randomitemList)
+    await tumble.say("Your item is...\n[ **"+  str(result)  +"** ]")
+    print("randomitem called!")     
     
 @tumble.command(pass_context = True, name = "bonus1", aliases = ["spaceaward","spacesbonus","spacesaward","spacebonus","award1"])
 async def bonus1(ctx):
