@@ -184,27 +184,6 @@ async def d50(ctx):
 
 
 
-#####Thwomp#####
-    
-@tumble.command(pass_context = True, name = "thwomp", aliases = ["thwomps","sslthwomp","sslthwomps"])
-async def thwomp(ctx):
-    thwompList = ["Blue","Green","Violet"]
-    sayString = ""
-    for color in thwompList:
-        result = random.randint(1,3)
-        sayString += color+" Thwomp: **"+str(result)+"**\n"
-    await tumble.say(sayString)
-    print("Thwomp called!")
-
-
-
-#####SSLBlock##### The block in Shifting Sand Land that gives 5-30 coins!
-    
-@tumble.command(pass_context = True, name = "sslblock", aliases = ["sslcoinblock"])
-async def sslblock(ctx):
-    result = random.randint(5,30)
-    await tumble.say("You bashed the block, and out fell...\n[ **"+  str(result)  +" coins!** ]")
-    print("sslblock called!")
 
 
 
@@ -236,11 +215,7 @@ async def mining(ctx):
     await tumble.say("After some digging, you found...\n[ **"+  str(result)  +"** ]")
     print("Mining called!")
 
-@tumble.command(pass_context = True, name = "randomitem", aliases = ["itemwheel","item"])
-async def randomitem(ctx):
-    result = random.choice(randomitemList)
-    await tumble.say("Your item is...\n[ **"+  str(result)  +"** ]")
-    print("randomitem called!")     
+   
     
 @tumble.command(pass_context = True, name = "bonus1", aliases = ["spaceaward","spacesbonus","spacesaward","spacebonus","award1"])
 async def bonus1(ctx):
@@ -262,17 +237,7 @@ async def bonus3(ctx):
     
     
 
-@tumble.command(pass_context = True, name = "maliestar", aliases = ["maliestarspace","maliegardenstar"])
-async def maliestar(ctx):
-    result = random.randint(0,6)
-    while result == prevStarLoc[0]:
-        result = random.randint(0,6)
-    prevStarLoc[0] = result
-    
-    imagey = malieStarList[result]
-    await tumble.say("The Star is now in location " + imagey[-5] + "!")
-    await tumble.upload("maliestar/"+imagey)
-    print("Maliestar called!")
+
 
 
 ######################################################
@@ -350,6 +315,84 @@ async def torracatrevolution(ctx,*args):
         await tumble.say(num+" isn't a valid number of coins!\nUsage example: **.torracatrevolution 10 20 15 20**")
                 
                 
+######################################################
+####################  MAP EVENTS  ####################
+######################################################              
+                
+##### Shifting Sand Land #####
+    
+@tumble.command(pass_context = True, name = "thwomp", aliases = ["thwomps","sslthwomp","sslthwomps"])
+async def thwomp(ctx):
+    thwompList = ["Blue","Green","Violet"]
+    sayString = ""
+    for color in thwompList:
+        result = random.randint(1,3)
+        sayString += color+" Thwomp: **"+str(result)+"**\n"
+    await tumble.say(sayString)
+    print("Thwomp called!")
+    
+@tumble.command(pass_context = True, name = "sslblock", aliases = ["sslcoinblock"])
+async def sslblock(ctx):
+    result = random.randint(5,30)
+    await tumble.say("You bashed the block, and out fell...\n[ **"+  str(result)  +" coins!** ]")
+    print("sslblock called!")
+    
+    
+    
+    
+##### Super Training Stadium #####
+
+@tumble.command(pass_context = True, name = "machokes", aliases = ["machoketoss","machoke"])
+async def machokes(ctx):
+    initlisty = ["lower left","lower right","upper right","upper left"]
+    locationIndex = random.randint(0,3)
+    tumbleSpeech = "The Machoke balled you up and threw you to the **" + initlisty[locationIndex] + "** corner's ? Space!\n")
+    tumbleSpeech += "*(If you're already there, go to the " + initlisty[(locationIndex+1)%4] + " space instead.)*"
+    await tumble.say(tumbleSpeech)
+    print("machokes called!")
+    
+@tumble.command(pass_context = True, name = "sportsball", aliases = ["stsballs","stsball","sportsballs","stadiumball","stadiumballs"])
+async def sportsball(ctx):
+    if random.randint(0,1) == 0:
+        await tumble.say("An Electrode rolls up to you and explodes! You lose 20 coins!")
+    else:
+        await tumble.say("A Golem Ball comes and rolls over you! You'll stay flattened, unable to move for a turn.")
+    print("sportsball called!")    
+    
+##### Malie Garden #####    
+
+@tumble.command(pass_context = True, name = "randomitem", aliases = ["itemwheel","item"])
+async def randomitem(ctx):
+    result = random.choice(randomitemList)
+    await tumble.say("Your item is...\n[ **"+  str(result)  +"** ]")
+    print("randomitem called!")   
+    
+@tumble.command(pass_context = True, name = "maliewater", aliases = ["water","maliepond","narrowpath","malienarrowpath"])
+async def maliewater(ctx):
+    result = random.randint(1,20)
+    if result <= 8:   
+        await tumble.say("A Feebas flies out of the water and splashes around! Nothing happens.")
+    elif result <= 12:
+        await tumble.say("Corsola excitedly flies out of the water and lands on you!\n**You've been half-flattened!** Your next turn's roll will be a half roll, and you can't use items.")
+    elif result <= 16:
+        await tumble.say("Octillery pops out of the water. Unhappy to see you, they blast you with an Octazooka.\n**You're blasted back to Start!** You won't get any of the benefits from reaching Start.")
+    elif result <= 19:
+        await tumble.say("Milotic pops out of the water. Glad to have a visitor, they give you a small gift.\n**You got 10 coins!**")
+    else:
+        await tumble.say("Manaphy flies out of the water, looking overjoyed! In their good mood, they're happy to give you a very nice gift!\n**You got a Star!**")        
+    print("maliewater called!")
+    
+@tumble.command(pass_context = True, name = "maliestar", aliases = ["maliestarspace","maliegardenstar"])
+async def maliestar(ctx):
+    result = random.randint(0,6)
+    while result == prevStarLoc[0]:
+        result = random.randint(0,6)
+    prevStarLoc[0] = result
+    
+    imagey = malieStarList[result]
+    await tumble.say("The Star is now in location " + imagey[-5] + "!")
+    await tumble.upload("maliestar/"+imagey)
+    print("Maliestar called!")    
                 
 ######################################################
 ######################  EVENTS  ######################
@@ -431,6 +474,10 @@ async def hi(ctx):
     await tumble.say(result)
     print("Hi called!")
 
+@tumble.command(pass_context = True)
+async def rigged(ctx):
+    await tumble.say("I am not! :triumph:")
+    print("Ping called!")    
     
 @tumble.command(pass_context = True)
 async def ping(ctx):
