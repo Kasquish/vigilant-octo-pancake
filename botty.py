@@ -372,7 +372,13 @@ async def sportsball(ctx):
 
 @tumble.command(pass_context = True, name = "boocoins", aliases = ["boocoinsteal"])
 async def boocoins(ctx):
-    result = random.randint(5,20)
+    #5% chance of 1
+    #20% chance of 5
+    #45% chance of 10
+    #20% chance of 15
+    #10% chance of 20
+    cointable = [1,5,5,5,5,10,10,10,10,10,10,10,10,10,15,15,15,15,20,20]
+    result = random.choice(cointable)
     await tumble.say("Boo stole "+ str(result) + " coins!")
     print("boocoins called!")
     
