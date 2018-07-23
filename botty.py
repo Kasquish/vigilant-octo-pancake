@@ -379,7 +379,10 @@ async def boocoins(ctx):
     #10% chance of 20
     cointable = [1,5,5,5,5,10,10,10,10,10,10,10,10,10,15,15,15,15,20,20]
     result = random.choice(cointable)
-    await tumble.say("Boo stole "+ str(result) + " coins!")
+    if result == 1:
+        await tumble.say("Boo stole "+ str(result) + " coin!")
+    else:
+        await tumble.say("Boo stole "+ str(result) + " coins!")
     print("boocoins called!")
     
 ##### Malie Garden #####    
