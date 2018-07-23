@@ -134,6 +134,14 @@ async def mushroom(ctx):
     print("Mushroom called!")
 
 
+#####D2#####
+
+@tumble.command(pass_context = True, name = "d2", aliases = ["coinflip"])
+async def d2(ctx):
+    result = random.randint(1,2)
+    await tumble.say("From 1-2, you got a...\n[ **"+  str(result)  +"** ]")
+    print("d2 called!")    
+    
 #####D3#####
 
 @tumble.command(pass_context = True, name = "halfmove", aliases = ["halfroll","half","d3","mini","minimush","minimushroom"])
@@ -383,7 +391,7 @@ async def maliewater(ctx):
         await tumble.say("Manaphy flies out of the water, looking overjoyed! In their good mood, they're happy to give you a very nice gift!\n**You got a Star!**")        
     print("maliewater called!")
     
-@tumble.command(pass_context = True, name = "meowth", aliases = ["meowthgamble","maliemeowth","maliegamble","coinflip","maliecoinflip","meowthcoinflip","meowthflip","malieflip"])
+@tumble.command(pass_context = True, name = "meowth", aliases = ["meowthgamble","maliemeowth","maliegamble","maliecoinflip","meowthcoinflip","meowthflip","malieflip"])
 async def meowth(ctx):
     if random.randint(0,1) == 0:
         await tumble.say("The coin has been flipped. It comes up...\n**Heads!** Did you win?")
