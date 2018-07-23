@@ -12,6 +12,7 @@ Star
 Hammer
 Hammer
 Substitute Doll
+Substitute Doll
 Mushroom
 Mushroom
 Mushroom
@@ -26,6 +27,7 @@ Mega Mushroom
 Telescope
 Telescope
 Telescope
+Basin
 Basin
 Boulder
 Boulder
