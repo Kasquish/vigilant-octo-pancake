@@ -368,6 +368,14 @@ async def sportsball(ctx):
         await tumble.say("A Golem Ball comes and rolls over you! You'll stay flattened, unable to move for a turn.")
     print("sportsball called!")    
     
+##### Luigi's Mansion #####
+
+@tumble.command(pass_context = True, name = "boocoins", aliases = ["boocoinsteal"])
+async def boocoins(ctx):
+    result = random.randint(5,20)
+    await tumble.say("Boo stole "+ str(result) + " coins!")
+    print("boocoins called!")
+    
 ##### Malie Garden #####    
 
 @tumble.command(pass_context = True, name = "randomitem", aliases = ["itemwheel","item"])
