@@ -350,7 +350,7 @@ async def sslblock(ctx):
     
 ##### Super Training Stadium #####
 
-@tumble.command(pass_context = True, name = "machoketoss", aliases = ["machokes","machoke"])
+@tumble.command(pass_context = True, name = "machoketoss", aliases = ["machokes","machoke","machokethrow"])
 async def machoketoss(ctx):
     initlisty = ["lower left","lower right","upper right","upper left"]
     initindices = [0,1,2,3]
@@ -360,7 +360,7 @@ async def machoketoss(ctx):
     await tumble.say(tumbleSpeech)
     print("machoketoss called!")
     
-@tumble.command(pass_context = True, name = "sportsball", aliases = ["stsballs","stsball","sportsballs","stadiumball","stadiumballs"])
+@tumble.command(pass_context = True, name = "sportsball", aliases = ["stsballs","stsball","sportsballs","stadiumball","stadiumballs","sportball","sportballs"])
 async def sportsball(ctx):
     if random.randint(0,1) == 0:
         await tumble.say("An Electrode rolls up to you and explodes! You lose 20 coins!")
@@ -482,6 +482,11 @@ async def itsamenammio(ctx):
 ######################   MISC   ######################
 ######################################################
 #(for fun, mainly)
+
+@tumble.command(pass_context = True, name = "wakeup", aliases = ["areyouthere","areyouhere"])
+async def wakeup(ctx):
+    await tumble.say(":zzz: ...oh... Oh! Ah! I-I'm awake! I'm ready for a party! Always!")
+    print("wakeup called!")
 
 @tumble.command(pass_context = True)
 async def canikickyou(ctx):
