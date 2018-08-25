@@ -136,11 +136,20 @@ async def mushroom(ctx):
 
 #####D2#####
 
-@tumble.command(pass_context = True, name = "d2", aliases = ["coinflip"])
+@tumble.command(pass_context = True, name = "d2")
 async def d2(ctx):
     result = random.randint(1,2)
     await tumble.say("From 1-2, you got a...\n[ **"+  str(result)  +"** ]")
     print("d2 called!")    
+    
+#####COINFLIP#####
+
+
+@tumble.command(pass_context = True, name = "coinflip", aliases = ["flipcoin"])
+async def coinflip(ctx):
+    result = random.choice(("Heads","Tails"))
+    await tumble.say("The coin came up...\n[ **"+  str(result)  +"** ]")
+    print("coinflip called!")    
     
 #####D3#####
 
