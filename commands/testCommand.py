@@ -15,4 +15,4 @@ class testCommandCog:
 
 
 def setup(bot):
-    bot.add_cog(MembersCog(bot))
+    bot.add_cog(testCommandCog(bot))
