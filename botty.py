@@ -14,7 +14,7 @@ from asyncio import sleep
 from discord.ext import commands
 from discord.ext.commands import Bot
 
-bot = commands.Bot(command_prefix="!")
+bot = commands.Bot(command_prefix=".")
 
 #Lists of strings, from randomWheels.
 torracatList = []
