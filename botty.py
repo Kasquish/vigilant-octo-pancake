@@ -85,7 +85,9 @@ async def on_ready():
 
 
 
-
+@tumble.command(pass_context = True)
+async def samba(ctx):
+    await tumble.say("She's gonna be hosting in my place soon. I bet she'll do great!~")
 
 
 
