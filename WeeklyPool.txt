@@ -1,5 +1,0 @@
-Play as [TYPE]-Type Pokémon 3 Times
-Play as [ALLPOKE] 1 Time
-Use [ITEM]
-Win 1 Game
-Land On [SPACE]

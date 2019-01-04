@@ -58,18 +58,18 @@ def listFromFile(filename,listy):
 async def on_ready():
 
     print("Preparing lists...")
-    listFromFile("torracat.txt",torracatList)
-    listFromFile("capsule.txt",capsuleList)
-    listFromFile("mining.txt",miningList)
+    listFromFile("randomWheels/torracat.txt",torracatList)
+    listFromFile("randomWheels/capsule.txt",capsuleList)
+    listFromFile("randomWheels/mining.txt",miningList)
     
-    listFromFile("thanks.txt",thanksList)
-    listFromFile("hi.txt",hiList)
+    listFromFile("randomTalk/thanks.txt",thanksList)
+    listFromFile("randomTalk/hi.txt",hiList)
     
-    listFromFile("randomitem.txt",randomitemList)
+    listFromFile("randomWheels/randomitem.txt",randomitemList)
     
-    listFromFile("spacebonus.txt",spacebonusList)
-    listFromFile("otherbonus.txt",otherbonusList)
-    listFromFile("flatbonus.txt",flatbonusList)
+    listFromFile("randomWheels/spacebonus.txt",spacebonusList)
+    listFromFile("randomWheels/otherbonus.txt",otherbonusList)
+    listFromFile("randomWheels/flatbonus.txt",flatbonusList)
 
     for filename in os.listdir("chance"):
         chanceList.append(filename)
