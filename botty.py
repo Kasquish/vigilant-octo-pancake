@@ -7,6 +7,8 @@ import os
 import pickle
 import time
 
+import sys, traceback
+
 
 from asyncio import sleep
 from discord.ext import commands
