@@ -14,7 +14,7 @@ from discord.ext.commands import Bot
 
 tumble = commands.Bot(command_prefix=".")
 
-chanceList = []
+#Lists of strings, from randomWheels.
 torracatList = []
 capsuleList = []
 miningList = []
@@ -25,15 +25,23 @@ spacebonusList = []
 flatbonusList = []
 otherbonusList = []
 
-malieStarList = []
+#Lists of quotes, from randomTalk.
 
 thanksList = []
 hiList = []
 
+#Lists of image names, from their respective folders.
+chanceList = []
+malieStarList = []
+
+#Used to make a repeated Star location less likely.
+#Not guaranteed to work, as bot may restart occasionally.
 prevStarLoc = [-1]
 
+#Gets the bot token straight from heroku. You can't see it!
 bot_token = os.environ['BOT_TOKEN']
 
+#So we can check bot's uptime.
 starttime = datetime.datetime.now()
 
 ##last6 = [0,0]
@@ -52,6 +60,29 @@ def listFromFile(filename,listy):
             line = line.strip()
             if line:
                 listy.append(line)
+
+
+
+
+
+
+
+
+
+
+
+#If you want to add more command files in the commands folder,
+#add them here too, so the bot can properly load them. :3
+                
+initial_extensions = ['commands.testCommand']
+
+if __name__ == '__main__':
+    for extension in initial_extensions:
+        try:
+            tumble.load_extension(extension)
+        except Exception as e:
+            print(f'Failed to load extension {extension}.', file=sys.stderr)
+            traceback.print_exc()
 
 
 @tumble.event
@@ -575,73 +606,73 @@ Wait... what kind of party is this again? ...Have fun anyway!
 ##################   WEEKLY QUESTS  ##################
 ######################################################
 
-WEEKLY_TARGET_CHANNEL = '393628008591917059'
-
-
-
-async def updateWeeklyTask():
-    nextWeeklyTime = 0
-    
-    with open("WeeklyTime.pickle","rb") as infile:
-        nextWeeklyTime = pickle.load(infile)
-
-
-    currDate = datetime.datetime.now()
-
-    
-    if nextWeeklyTime <= currDate:
-
-        weeklyString = ""
-        randomWeekly1 = []
-
-        listFromFile("WeeklyPool.txt",randomWeekly1)
-
-        weeklyString = random.choice(randomWeekly1)
-
-        leftBracket = weeklyString.find('[')
-        
-        if weeklyString.find('[') != -1:
-            rightBracket = weeklyString.find(']')
-            partToReplace = weeklyString[leftBracket:rightBracket+1]
-            partFilename = partToReplace.strip('[]')
-
-            randomWeekly2 = []
-
-            listFromFile("Weekly"+partFilename+".txt",randomWeekly2)
-
-            weeklyString = weeklyString.replace(partToReplace,random.choice(randomWeekly2))
-
-        currWeekly = weeklyString
-
-        with open("WeeklyCurrent.txt","w") as outfile:
-            print(currWeekly,file=outfile)
-
-
-        while nextWeeklyTime <= currDate:
-            nextWeeklyTime += datetime.timedelta(days = 7)
-        
-        with open("WeeklyTime.pickle","wb") as outfile:
-            pickle.dump(nextWeeklyTime,outfile)
-
-        targetChannel = discord.Object(id = WEEKLY_TARGET_CHANNEL);
-
-        await sendWeeklyMessage(targetChannel);
-            
-            
-
-
-async def sendWeeklyMessage(channel):
-
-    with open("WeeklyCurrent.txt","r") as infile:
-        currWeekly = infile.readline().strip()
-
-    with open("WeeklyTime.pickle","rb") as infile:
-        nextWeeklyTime = pickle.load(infile)
-        
-    dateString = nextWeeklyTime.strftime("%B %d!")
-    wholeMessage = "Current task:\n"+currWeekly+"\nFinish by the end of "+str(dateString)
-    await tumble.send_message(channel,wholeMessage)
-
+##WEEKLY_TARGET_CHANNEL = '393628008591917059'
+##
+##
+##
+##async def updateWeeklyTask():
+##    nextWeeklyTime = 0
+##    
+##    with open("WeeklyTime.pickle","rb") as infile:
+##        nextWeeklyTime = pickle.load(infile)
+##
+##
+##    currDate = datetime.datetime.now()
+##
+##    
+##    if nextWeeklyTime <= currDate:
+##
+##        weeklyString = ""
+##        randomWeekly1 = []
+##
+##        listFromFile("WeeklyPool.txt",randomWeekly1)
+##
+##        weeklyString = random.choice(randomWeekly1)
+##
+##        leftBracket = weeklyString.find('[')
+##        
+##        if weeklyString.find('[') != -1:
+##            rightBracket = weeklyString.find(']')
+##            partToReplace = weeklyString[leftBracket:rightBracket+1]
+##            partFilename = partToReplace.strip('[]')
+##
+##            randomWeekly2 = []
+##
+##            listFromFile("Weekly"+partFilename+".txt",randomWeekly2)
+##
+##            weeklyString = weeklyString.replace(partToReplace,random.choice(randomWeekly2))
+##
+##        currWeekly = weeklyString
+##
+##        with open("WeeklyCurrent.txt","w") as outfile:
+##            print(currWeekly,file=outfile)
+##
+##
+##        while nextWeeklyTime <= currDate:
+##            nextWeeklyTime += datetime.timedelta(days = 7)
+##        
+##        with open("WeeklyTime.pickle","wb") as outfile:
+##            pickle.dump(nextWeeklyTime,outfile)
+##
+##        targetChannel = discord.Object(id = WEEKLY_TARGET_CHANNEL);
+##
+##        await sendWeeklyMessage(targetChannel);
+##            
+##            
+##
+##
+##async def sendWeeklyMessage(channel):
+##
+##    with open("WeeklyCurrent.txt","r") as infile:
+##        currWeekly = infile.readline().strip()
+##
+##    with open("WeeklyTime.pickle","rb") as infile:
+##        nextWeeklyTime = pickle.load(infile)
+##        
+##    dateString = nextWeeklyTime.strftime("%B %d!")
+##    wholeMessage = "Current task:\n"+currWeekly+"\nFinish by the end of "+str(dateString)
+##    await tumble.send_message(channel,wholeMessage)
+##
 
 
 
