@@ -73,18 +73,20 @@ def listFromFile(filename,listy):
 
 
 
-#If you want to add more command files in the commands folder,
-#add them here too, so the bot can properly load them. :3
+#TODO: update discord.py to version 1.0 so this actually works!
+#Please disregard all this commented-out stuff.
+###If you want to add more command files in the commands folder,
+###add them here too, so the bot can properly load them. :3
                 
-initial_extensions = ['commands.testCommand']
-
-if __name__ == '__main__':
-    for extension in initial_extensions:
-        try:
-            bot.load_extension(extension)
-        except Exception as e:
-            print(f'Failed to load extension {extension}.', file=sys.stderr)
-            traceback.print_exc()
+##initial_extensions = ['commands.testCommand']
+##
+##if __name__ == '__main__':
+##    for extension in initial_extensions:
+##        try:
+##            bot.load_extension(extension)
+##        except Exception as e:
+##            print('Failed to load extension {extension}.', file=sys.stderr)
+##            traceback.print_exc()
 
 
 @bot.event
@@ -517,6 +519,14 @@ async def itsamenammio(ctx):
         await bot.say("Hey, it is you!")
     else:
         await bot.say("No you're not, silly!")
+
+@bot.command(pass_context = True)
+async def superTestMessage(ctx):
+    if ctx.message.author.id == "161982345207873536":
+        await bot.say("Pants!")
+    else:
+        await bot.say("Are you trying to make me say naughty things? How dare you!")
+
             
 
 ######################################################
