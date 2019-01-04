@@ -356,13 +356,13 @@ async def torrashuffle(ctx,*args):
     for i in range(len(listOrig)):
         torraSpeech += "\n"
         if listOrig[i] == listShuffled[i]:
-            torraSpeech += listOrig[i] + " doesn't move!\n"
+            torraSpeech += listOrig[i] + " doesn't move!"
         else:
             torraSpeech += listOrig[i] + " moves to " + listShuffled[i] + "'s "
             if listShuffled[i] in listMoved:
-                torraSpeech += "original position!\n"
+                torraSpeech += "original position!"
             else:
-                torraSpeech += "position!\n"
+                torraSpeech += "position!"
             listMoved.append(listOrig[i])
     torraSpeech += "\""
     await bot.say(torraSpeech)
@@ -387,9 +387,9 @@ async def itemshuffle(ctx,*args):
     for i in range(len(listOrig)):
         torraSpeech += "\n"
         if listOrig[i] == listShuffled[i]:
-            torraSpeech += listOrig[i] + ", you can keep your item.\n"
+            torraSpeech += listOrig[i] + ", you can keep your item."
         else:
-            torraSpeech += listOrig[i] + ", give your item to " + listShuffled[i] + "!\n"
+            torraSpeech += listOrig[i] + ", give your item to " + listShuffled[i] + "!"
     torraSpeech += "\""
     await bot.say(torraSpeech)
     
