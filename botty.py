@@ -116,6 +116,8 @@ async def on_ready():
 
     print("Samba is ready!")
 
+    print(discord.__version__)
+
 
 
 

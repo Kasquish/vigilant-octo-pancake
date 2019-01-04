@@ -11,7 +11,7 @@ class testCommandCog:
 
     @commands.command(pass_context = True)
     async def crazyTestCommand(ctx,*args):
-        await bot.say("Pants!")
+        await ctx.send("Pants!")
 
 
 def setup(bot):
