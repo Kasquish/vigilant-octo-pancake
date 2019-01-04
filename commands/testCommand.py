@@ -6,12 +6,12 @@ class testCommandCog:
     
 
     def __init__(self, bot):
-            self.bot = bot
+        self.bot = bot
 
 
     @commands.command(pass_context = True)
     async def crazyTestCommand(ctx,*args):
-        await self.bot.say("Pants!")
+        await bot.say("Pants!")
 
 
 def setup(bot):
