@@ -1,4 +1,4 @@
-#Tumble is here to roll dice... and do some other things!
+#Samba is here to roll dice... and do some other things!
 
 import datetime
 import discord
@@ -14,7 +14,7 @@ from asyncio import sleep
 from discord.ext import commands
 from discord.ext.commands import Bot
 
-tumble = commands.Bot(command_prefix=".")
+bot = commands.Bot(command_prefix=".")
 
 #Lists of strings, from randomWheels.
 torracatList = []
@@ -51,7 +51,7 @@ starttime = datetime.datetime.now()
 ##last10 = [0,0]
 ##last20 = [0,0]
 
-##TODO maybe: have Tumble comment on getting the same roll x times in a row? For fun?
+##TODO maybe: have Samba comment on getting the same roll x times in a row? For fun?
 
 
 #Helper function
@@ -81,13 +81,13 @@ initial_extensions = ['commands.testCommand']
 if __name__ == '__main__':
     for extension in initial_extensions:
         try:
-            tumble.load_extension(extension)
+            bot.load_extension(extension)
         except Exception as e:
             print(f'Failed to load extension {extension}.', file=sys.stderr)
             traceback.print_exc()
 
 
-@tumble.event
+@bot.event
 async def on_ready():
 
     print("Preparing lists...")
@@ -114,13 +114,8 @@ async def on_ready():
 
     
 
-    print("Tumble is ready!")
+    print("Samba is ready!")
 
-
-
-@tumble.command(pass_context = True)
-async def samba(ctx):
-    await tumble.say("She's gonna be hosting in my place soon. I bet she'll do great!~")
 
 
 
@@ -130,7 +125,7 @@ async def samba(ctx):
 
 #####D#####
 
-@tumble.command(pass_context = True, name = "roll", aliases = ["d"])
+@bot.command(pass_context = True, name = "roll", aliases = ["d"])
 async def roll(ctx,*args):
     if len(args) > 0:
         arg = args[0].strip("d")
@@ -141,22 +136,22 @@ async def roll(ctx,*args):
     try:
         num = int(arg)
         result = random.randint(1,num)
-        await tumble.say("From 1-"+str(num)+", you got a...\n[ **"+  str(result)  +"** ]")
+        await bot.say("From 1-"+str(num)+", you got a...\n[ **"+  str(result)  +"** ]")
     except ValueError:
-        await tumble.say("I-I don't have any dice like that...")
+        await bot.say("I-I don't have any dice like that...")
     print("Roll called with " + arg + "!")
 
 #####D6#####
 
-@tumble.command(pass_context = True, name = "move", aliases = ["randomroll","d6","6d","curry","curryroll","rollasixsideddiepleasetumble"])
+@bot.command(pass_context = True, name = "move", aliases = ["randomroll","d6","6d","curry","curryroll","rollasixsideddiepleasesamba"])
 async def move(ctx):
     result = random.randint(1,6)
-    await tumble.say("From 1-6, you got a...\n[ **"+  str(result)  +"** ]")
+    await bot.say("From 1-6, you got a...\n[ **"+  str(result)  +"** ]")
     print("Move called!")
 
 #####2D6#####
 
-@tumble.command(pass_context = True, name = "mushroom", aliases = ["mega","mush","megamush","megamushroom","2d6","doubleroll","doublemove"])
+@bot.command(pass_context = True, name = "mushroom", aliases = ["mega","mush","megamush","megamushroom","2d6","doubleroll","doublemove"])
 async def mushroom(ctx):
     result1 = random.randint(1,6)
     result2 = random.randint(1,6)
@@ -165,53 +160,53 @@ async def mushroom(ctx):
     sayString += "[ **"+  str(result1+result2)  +"** ]\n"
     if result1 == result2:
         sayString += "*Hey, you got doubles!*"
-    await tumble.say(sayString)
+    await bot.say(sayString)
     print("Mushroom called!")
 
 
 #####D2#####
 
-@tumble.command(pass_context = True, name = "d2")
+@bot.command(pass_context = True, name = "d2")
 async def d2(ctx):
     result = random.randint(1,2)
-    await tumble.say("From 1-2, you got a...\n[ **"+  str(result)  +"** ]")
+    await bot.say("From 1-2, you got a...\n[ **"+  str(result)  +"** ]")
     print("d2 called!")    
     
 #####COINFLIP#####
 
 
-@tumble.command(pass_context = True, name = "coinflip", aliases = ["flipcoin"])
+@bot.command(pass_context = True, name = "coinflip", aliases = ["flipcoin"])
 async def coinflip(ctx):
     result = random.choice(("Heads","Tails"))
-    await tumble.say("The coin came up...\n[ **"+  str(result)  +"** ]")
+    await bot.say("The coin came up...\n[ **"+  str(result)  +"** ]")
     print("coinflip called!")    
     
 #####D3#####
 
-@tumble.command(pass_context = True, name = "halfmove", aliases = ["halfroll","half","d3","mini","minimush","minimushroom"])
+@bot.command(pass_context = True, name = "halfmove", aliases = ["halfroll","half","d3","mini","minimush","minimushroom"])
 async def halfmove(ctx):
     result = random.randint(1,3)
-    await tumble.say("From 1-3, you got a...\n[ **"+  str(result)  +"** ]")
+    await bot.say("From 1-3, you got a...\n[ **"+  str(result)  +"** ]")
     print("Halfmove called!")
 
 #####D10#####
     
-@tumble.command(pass_context = True, name = "d10", aliases = ["grape","grapes","graperoll","grapesroll","cupcake","cupcakes","cupcakeroll","cupcakesroll"])
+@bot.command(pass_context = True, name = "d10", aliases = ["grape","grapes","graperoll","grapesroll","cupcake","cupcakes","cupcakeroll","cupcakesroll"])
 async def d10(ctx):
     result = random.randint(1,10)
-    await tumble.say("From 1-10, you got a...\n[ **"+  str(result)  +"** ]")
+    await bot.say("From 1-10, you got a...\n[ **"+  str(result)  +"** ]")
     print("d10 called!")
 
     
 
 #####D20#####
     
-@tumble.command(pass_context = True, name = "d20")
+@bot.command(pass_context = True, name = "d20")
 async def d20(ctx):
     result = random.randint(1,20)
-    await tumble.say("From 1-20, you got a...\n[ **"+  str(result)  +"** ]")
+    await bot.say("From 1-20, you got a...\n[ **"+  str(result)  +"** ]")
     if result == 1:
-        await tumble.say("*Somewhere, an anvil falls on an Umbreon...*")
+        await bot.say("*Somewhere, an anvil falls on an Umbreon...*")
         print("They found the Umbreon easter egg!")
     print("d20 called!")
 
@@ -219,19 +214,19 @@ async def d20(ctx):
 
 #####D30#####
     
-@tumble.command(pass_context = True, name = "d30")
+@bot.command(pass_context = True, name = "d30")
 async def d30(ctx):
     result = random.randint(1,30)
-    await tumble.say("From 1-30, you got a...\n[ **"+  str(result)  +"** ]")
+    await bot.say("From 1-30, you got a...\n[ **"+  str(result)  +"** ]")
     print("d30 called!")
 
 
 #####D50#####
     
-@tumble.command(pass_context = True, name = "d50")
+@bot.command(pass_context = True, name = "d50")
 async def d50(ctx):
     result = random.randint(1,50)
-    await tumble.say("From 1-50, you got a...\n[ **"+  str(result)  +"** ]")
+    await bot.say("From 1-50, you got a...\n[ **"+  str(result)  +"** ]")
     print("d50 called!")
 
 
@@ -243,48 +238,48 @@ async def d50(ctx):
 ######################  WHEELS  ######################
 ######################################################
 
-@tumble.command(pass_context = True, name = "chance", aliases = ["chancespace","chancecard","drawchance"])
+@bot.command(pass_context = True, name = "chance", aliases = ["chancespace","chancecard","drawchance"])
 async def chance(ctx):
     result = random.choice(chanceList)
-    await tumble.upload("chance/"+result)
+    await bot.upload("chance/"+result)
     print("Chance called!")
 
-@tumble.command(pass_context = True)
+@bot.command(pass_context = True)
 async def capsule(ctx):
     result = random.choice(capsuleList)
-    await tumble.say("You opened the capsule, and found...\n[ **"+  str(result) +"** ]")
+    await bot.say("You opened the capsule, and found...\n[ **"+  str(result) +"** ]")
     print("Capsule called!")
     
-@tumble.command(pass_context = True, name = "torracat", aliases = ["torra","torraspace","torracatspace"])
+@bot.command(pass_context = True, name = "torracat", aliases = ["torra","torraspace","torracatspace"])
 async def torracat(ctx):
     result = random.choice(torracatList)
-    await tumble.say("Torracat decrees that the following shall happen!\n[ **"+  str(result)  +"** ]")
+    await bot.say("Torracat decrees that the following shall happen!\n[ **"+  str(result)  +"** ]")
     print("Torracat called!")
     
-@tumble.command(pass_context = True, name = "mining", aliases = ["mine","excavate","excavation","minespace","miningspace","excavationspace"])
+@bot.command(pass_context = True, name = "mining", aliases = ["mine","excavate","excavation","minespace","miningspace","excavationspace"])
 async def mining(ctx):
     result = random.choice(miningList)
-    await tumble.say("After some digging, you found...\n[ **"+  str(result)  +"** ]")
+    await bot.say("After some digging, you found...\n[ **"+  str(result)  +"** ]")
     print("Mining called!")
 
    
     
-@tumble.command(pass_context = True, name = "bonus1", aliases = ["spaceaward","spacesbonus","spacesaward","spacebonus","award1"])
+@bot.command(pass_context = True, name = "bonus1", aliases = ["spaceaward","spacesbonus","spacesaward","spacebonus","award1"])
 async def bonus1(ctx):
     result = random.choice(spacebonusList )
-    await tumble.say("The first award is...\n[ **"+  str(result)  +"** ]")
+    await bot.say("The first award is...\n[ **"+  str(result)  +"** ]")
     print("bonus1 called!") 
     
-@tumble.command(pass_context = True, name = "bonus2", aliases = ["miscaward","miscbonus","otheraward","otherbonus","award2"])
+@bot.command(pass_context = True, name = "bonus2", aliases = ["miscaward","miscbonus","otheraward","otherbonus","award2"])
 async def bonus2(ctx):
     result = random.choice(otherbonusList )
-    await tumble.say("The second award is...\n[ **"+  str(result)  +"** ]")
+    await bot.say("The second award is...\n[ **"+  str(result)  +"** ]")
     print("bonus2 called!")        
     
-@tumble.command(pass_context = True, name = "bonus3", aliases = ["flataward","flatsbonus","flatsaward","flatbonus","award3"])
+@bot.command(pass_context = True, name = "bonus3", aliases = ["flataward","flatsbonus","flatsaward","flatbonus","award3"])
 async def bonus3(ctx):
     result = random.choice(flatbonusList)
-    await tumble.say("The third award is...\n[ **"+  str(result)  +"** ]")
+    await bot.say("The third award is...\n[ **"+  str(result)  +"** ]")
     print("bonus3 called!")     
     
     
@@ -297,7 +292,7 @@ async def bonus3(ctx):
 ######################################################
     
     
-@tumble.command(pass_context = True, name = "torrashuffle", aliases = ["torracatshuffle","shuffleposition","shufflepositions","positionshuffle"])    
+@bot.command(pass_context = True, name = "torrashuffle", aliases = ["torracatshuffle","shuffleposition","shufflepositions","positionshuffle"])    
 async def torrashuffle(ctx,*args):
     if len(args) > 0:
         listOrig = list(args)
@@ -311,23 +306,23 @@ async def torrashuffle(ctx,*args):
     listMoved = [] #Keeping a list of which players have already moved isn't the most efficient way to do this, but...
                    #Most situations should only have an N of 8 or fewer.
                    #Proposal: the shuffled list is actually just a list of indices which can be linked back to the original names.
-    tumbleSpeech = ""
+    sambaSpeech = ""
     for i in range(len(listOrig)):
         if listOrig[i] == listShuffled[i]:
-            tumbleSpeech += listOrig[i] + " doesn't move!\n"
+            sambaSpeech += listOrig[i] + " doesn't move!\n"
         else:
-            tumbleSpeech += listOrig[i] + " moves to " + listShuffled[i] + "'s "
+            sambaSpeech += listOrig[i] + " moves to " + listShuffled[i] + "'s "
             if listShuffled[i] in listMoved:
-                tumbleSpeech += "original position!\n"
+                sambaSpeech += "original position!\n"
             else:
-                tumbleSpeech += "position!\n"
+                sambaSpeech += "position!\n"
             listMoved.append(listOrig[i])
         
-    await tumble.say(tumbleSpeech)
+    await bot.say(sambaSpeech)
     
 
     
-@tumble.command(pass_context = True, name = "itemshuffle", aliases = ["shuffleitem","shuffleitems"])    
+@bot.command(pass_context = True, name = "itemshuffle", aliases = ["shuffleitem","shuffleitems"])    
 async def itemshuffle(ctx,*args):
     if len(args) > 0:
         listOrig = list(args)
@@ -341,18 +336,18 @@ async def itemshuffle(ctx,*args):
     listMoved = [] #Keeping a list of which players have already moved isn't the most efficient way to do this, but...
                    #Most situations should only have an N of 8 or fewer.
                    #Proposal: the shuffled list is actually just a list of indices which can be linked back to the original names.
-    tumbleSpeech = ""
+    sambaSpeech = ""
     for i in range(len(listOrig)):
         if listOrig[i] == listShuffled[i]:
-            tumbleSpeech += listOrig[i] + ", you can keep your item.\n"
+            sambaSpeech += listOrig[i] + ", you can keep your item.\n"
         else:
-            tumbleSpeech += listOrig[i] + ", give your item to " + listShuffled[i] + "!\n"
+            sambaSpeech += listOrig[i] + ", give your item to " + listShuffled[i] + "!\n"
         
-    await tumble.say(tumbleSpeech)
+    await bot.say(sambaSpeech)
     
     
     
-@tumble.command(pass_context = True, name = "torracatrevolution", aliases = ["torrarevolution","torrarev","torracatrev","revolution","communism","torracommunism","torracatcommunism"])
+@bot.command(pass_context = True, name = "torracatrevolution", aliases = ["torrarevolution","torrarev","torracatrev","revolution","communism","torracommunism","torracatcommunism"])
 async def torracatrevolution(ctx,*args):
     try:
         if len(args) > 0:
@@ -360,11 +355,11 @@ async def torracatrevolution(ctx,*args):
             for num in args:
                 sum += int(num)
             sum //= len(args)
-            await tumble.say("Everyone now has " + str(sum) + " coins!")
+            await bot.say("Everyone now has " + str(sum) + " coins!")
         else:
-            await tumble.say("Please specify everyone's total number of coins!\nUsage example: **.torracatrevolution 10 20 15 20**")
+            await bot.say("Please specify everyone's total number of coins!\nUsage example: **.torracatrevolution 10 20 15 20**")
     except ValueError:
-        await tumble.say(num+" isn't a valid number of coins!\nUsage example: **.torracatrevolution 10 20 15 20**")
+        await bot.say(num+" isn't a valid number of coins!\nUsage example: **.torracatrevolution 10 20 15 20**")
                 
                 
 ######################################################
@@ -373,20 +368,20 @@ async def torracatrevolution(ctx,*args):
                 
 ##### Shifting Sand Land #####
     
-@tumble.command(pass_context = True, name = "thwomp", aliases = ["thwomps","sslthwomp","sslthwomps"])
+@bot.command(pass_context = True, name = "thwomp", aliases = ["thwomps","sslthwomp","sslthwomps"])
 async def thwomp(ctx):
     thwompList = ["Blue","Green","Violet"]
     sayString = ""
     for color in thwompList:
         result = random.randint(1,3)
         sayString += color+" Thwomp: **"+str(result)+"**\n"
-    await tumble.say(sayString)
+    await bot.say(sayString)
     print("Thwomp called!")
     
-@tumble.command(pass_context = True, name = "sslblock", aliases = ["sslcoinblock"])
+@bot.command(pass_context = True, name = "sslblock", aliases = ["sslcoinblock"])
 async def sslblock(ctx):
     result = random.randint(5,30)
-    await tumble.say("You bashed the block, and out fell...\n[ **"+  str(result)  +" coins!** ]")
+    await bot.say("You bashed the block, and out fell...\n[ **"+  str(result)  +" coins!** ]")
     print("sslblock called!")
     
     
@@ -394,27 +389,27 @@ async def sslblock(ctx):
     
 ##### Super Training Stadium #####
 
-@tumble.command(pass_context = True, name = "machoketoss", aliases = ["machokes","machoke","machokethrow"])
+@bot.command(pass_context = True, name = "machoketoss", aliases = ["machokes","machoke","machokethrow"])
 async def machoketoss(ctx):
     initlisty = ["lower left","lower right","upper right","upper left"]
     initindices = [0,1,2,3]
     random.shuffle(initindices)
-    tumbleSpeech = "The Machoke balled you up and threw you to the **" + initlisty[initindices[0]] + "** corner's ? Space!\n"
-    tumbleSpeech += "*(If you're already there, go to the " + initlisty[initindices[1]] + " space instead.)*"
-    await tumble.say(tumbleSpeech)
+    sambaSpeech = "The Machoke balled you up and threw you to the **" + initlisty[initindices[0]] + "** corner's ? Space!\n"
+    sambaSpeech += "*(If you're already there, go to the " + initlisty[initindices[1]] + " space instead.)*"
+    await bot.say(sambaSpeech)
     print("machoketoss called!")
     
-@tumble.command(pass_context = True, name = "sportsball", aliases = ["stsballs","stsball","sportsballs","stadiumball","stadiumballs","sportball","sportballs"])
+@bot.command(pass_context = True, name = "sportsball", aliases = ["stsballs","stsball","sportsballs","stadiumball","stadiumballs","sportball","sportballs"])
 async def sportsball(ctx):
     if random.randint(0,1) == 0:
-        await tumble.say("An Electrode rolls up to you and explodes! You lose 20 coins!")
+        await bot.say("An Electrode rolls up to you and explodes! You lose 20 coins!")
     else:
-        await tumble.say("A Golem Ball comes and rolls over you! You'll stay flattened, unable to move for a turn.")
+        await bot.say("A Golem Ball comes and rolls over you! You'll stay flattened, unable to move for a turn.")
     print("sportsball called!")    
     
 ##### Luigi's Mansion #####
 
-@tumble.command(pass_context = True, name = "boocoins", aliases = ["boocoinsteal"])
+@bot.command(pass_context = True, name = "boocoins", aliases = ["boocoinsteal"])
 async def boocoins(ctx):
     #5% chance of 1
     #20% chance of 5
@@ -424,43 +419,43 @@ async def boocoins(ctx):
     cointable = [1,5,5,5,5,10,10,10,10,10,10,10,10,10,15,15,15,15,20,20]
     result = random.choice(cointable)
     if result == 1:
-        await tumble.say("Boo stole "+ str(result) + " coin!")
+        await bot.say("Boo stole "+ str(result) + " coin!")
     else:
-        await tumble.say("Boo stole "+ str(result) + " coins!")
+        await bot.say("Boo stole "+ str(result) + " coins!")
     print("boocoins called!")
     
 ##### Malie Garden #####    
 
-@tumble.command(pass_context = True, name = "randomitem", aliases = ["itemwheel","item"])
+@bot.command(pass_context = True, name = "randomitem", aliases = ["itemwheel","item"])
 async def randomitem(ctx):
     result = random.choice(randomitemList)
-    await tumble.say("Your item is...\n[ **"+  str(result)  +"** ]")
+    await bot.say("Your item is...\n[ **"+  str(result)  +"** ]")
     print("randomitem called!")   
     
-@tumble.command(pass_context = True, name = "maliewater", aliases = ["water","maliepond","narrowpath","malienarrowpath"])
+@bot.command(pass_context = True, name = "maliewater", aliases = ["water","maliepond","narrowpath","malienarrowpath"])
 async def maliewater(ctx):
     result = random.randint(1,20)
     if result <= 8:   
-        await tumble.say("A Feebas flies out of the water and splashes around! Nothing happens.")
+        await bot.say("A Feebas flies out of the water and splashes around! Nothing happens.")
     elif result <= 12:
-        await tumble.say("Corsola excitedly flies out of the water and lands on you!\n**You've been half-flattened!** Your next turn's roll will be a half roll, and you can't use items.")
+        await bot.say("Corsola excitedly flies out of the water and lands on you!\n**You've been half-flattened!** Your next turn's roll will be a half roll, and you can't use items.")
     elif result <= 16:
-        await tumble.say("Octillery pops out of the water. Unhappy to see you, they blast you with an Octazooka.\n**You're blasted back to Start!** You won't get any of the benefits from reaching Start.")
+        await bot.say("Octillery pops out of the water. Unhappy to see you, they blast you with an Octazooka.\n**You're blasted back to Start!** You won't get any of the benefits from reaching Start.")
     elif result <= 19:
-        await tumble.say("Milotic pops out of the water. Glad to have a visitor, they give you a small gift.\n**You got 10 coins!**")
+        await bot.say("Milotic pops out of the water. Glad to have a visitor, they give you a small gift.\n**You got 10 coins!**")
     else:
-        await tumble.say("Manaphy flies out of the water, looking overjoyed! In their good mood, they're happy to give you a very nice gift!\n**You got a Star!**")        
+        await bot.say("Manaphy flies out of the water, looking overjoyed! In their good mood, they're happy to give you a very nice gift!\n**You got a Star!**")        
     print("maliewater called!")
     
-@tumble.command(pass_context = True, name = "meowth", aliases = ["meowthgamble","maliemeowth","maliegamble","maliecoinflip","meowthcoinflip","meowthflip","malieflip"])
+@bot.command(pass_context = True, name = "meowth", aliases = ["meowthgamble","maliemeowth","maliegamble","maliecoinflip","meowthcoinflip","meowthflip","malieflip"])
 async def meowth(ctx):
     if random.randint(0,1) == 0:
-        await tumble.say("The coin has been flipped. It comes up...\n**Heads!** Did you win?")
+        await bot.say("The coin has been flipped. It comes up...\n**Heads!** Did you win?")
     else:
-        await tumble.say("The coin has been flipped. It comes up...\n**Tails!** Did you win?")
+        await bot.say("The coin has been flipped. It comes up...\n**Tails!** Did you win?")
     print("meowth called!")
     
-@tumble.command(pass_context = True, name = "maliestar", aliases = ["maliestarspace","maliegardenstar"])
+@bot.command(pass_context = True, name = "maliestar", aliases = ["maliestarspace","maliegardenstar"])
 async def maliestar(ctx):
     result = random.randint(0,6)
     while result == prevStarLoc[0]:
@@ -468,28 +463,28 @@ async def maliestar(ctx):
     prevStarLoc[0] = result
     
     imagey = malieStarList[result]
-    await tumble.say("The Star is now in location " + imagey[-5] + "!")
-    await tumble.upload("maliestar/"+imagey)
+    await bot.say("The Star is now in location " + imagey[-5] + "!")
+    await bot.upload("maliestar/"+imagey)
     print("Maliestar called!")    
                 
 ######################################################
 ######################  EVENTS  ######################
 ######################################################
 
-#@tumble.command(pass_context = True)
+#@bot.command(pass_context = True)
 #async def freegift(ctx):
 #    if ctx.message.channel.id != "373259889826332673":
-#        await tumble.say("Please call .freegift in the Trading channel!")
+#        await bot.say("Please call .freegift in the Trading channel!")
 #    else:
 #        idList = []
 #        listFromFile("freegift_ids.txt",idList)
 #        if str(ctx.message.author.id) in idList:
-#            await tumble.say("You already got your free coupon! I only have so many to go around...")
+#            await bot.say("You already got your free coupon! I only have so many to go around...")
 #        else:
 #            ticketList = []
 #            listFromFile("freegift.txt",ticketList)
 #            ticket = random.choice(ticketList)
-#            await tumble.say(
+#            await bot.say(
 #ctx.message.author.name + """, your free coupon is...
 #the """+ticket+""" Coupon!
 #Keep this in your items - you can redeem it to play with """+ticket+"""!
@@ -498,28 +493,28 @@ async def maliestar(ctx):
 #                print(str(ctx.message.author.id),file=outFile)
 #    print("Freegift called!")
 
-@tumble.command(pass_context = True)
+@bot.command(pass_context = True)
 async def freegift(ctx):
-     await tumble.say("Sorry, bud, that ship has sailed... There are no more free gift coupons left.\nBut maybe I'll have something else for you later?")
+     await bot.say("Sorry, bud, that ship has sailed... There are no more free gift coupons left.\nBut maybe I'll have something else for you later?")
 
 
 ######################################################
 ###################### ME ONLY  ######################
 ######################################################
 
-##@tumble.command(pass_context = True)
+##@bot.command(pass_context = True)
 ##async def generalhanasu(ctx):
-##    #Tumble says something in general chat.
+##    #bot says something in general chat.
 ##    result = random.choice(chanceList)
-##    await tumble.upload("chance/"+result)
+##    await bot.upload("chance/"+result)
 ##    print("Chance called!")    
 
-@tumble.command(pass_context = True)
+@bot.command(pass_context = True)
 async def itsamenammio(ctx):
     if ctx.message.author.id == "161982345207873536":
-        await tumble.say("Hey, it is you!")
+        await bot.say("Hey, it is you!")
     else:
-        await tumble.say("No you're not, silly!")
+        await bot.say("No you're not, silly!")
             
 
 ######################################################
@@ -527,51 +522,51 @@ async def itsamenammio(ctx):
 ######################################################
 #(for fun, mainly)
 
-@tumble.command(pass_context = True, name = "wakeup", aliases = ["areyouthere","areyouhere"])
+@bot.command(pass_context = True, name = "wakeup", aliases = ["areyouthere","areyouhere"])
 async def wakeup(ctx):
-    await tumble.say(":zzz: ...oh... Oh! Ah! I-I'm awake! I'm ready for a party! Always!")
+    await bot.say(":zzz: ...oh... Oh! Ah! I-I'm awake! I'm ready for a party! Always!")
     print("wakeup called!")
 
-@tumble.command(pass_context = True)
+@bot.command(pass_context = True)
 async def canikickyou(ctx):
-    await tumble.say("Sure thing! Don't worry, it won't hurt or anything.")
-    await tumble.say("I hope I can come back for another party, though!")
+    await bot.say("Sure thing! Don't worry, it won't hurt or anything.")
+    await bot.say("I hope I can come back for another party, though!")
     print("CanIKickYou called!")
 
-@tumble.command(pass_context = True, name = "annoying", aliases = ["youreannoying","shutup","ihateyou"])
+@bot.command(pass_context = True, name = "annoying", aliases = ["youreannoying","shutup","ihateyou"])
 async def annoying(ctx):
-    await tumble.say("Aww, really? Sorry to bother you, then!")
-    await tumble.say("B-but I'll go teach someone else how to host a party, and bring 'em over!")
-    await tumble.say("I hope you have a nice day! :heart:")
+    await bot.say("Aww, really? Sorry to bother you, then!")
+    await bot.say("B-but I'll go teach someone else how to host a party, and bring 'em over!")
+    await bot.say("I hope you have a nice day! :heart:")
     print("Annoying called...")
 
-@tumble.command(pass_context = True, name = "thanks", aliases = ["thankyou","gracias","arigato","arigatou"])
+@bot.command(pass_context = True, name = "thanks", aliases = ["thankyou","gracias","arigato","arigatou"])
 async def thanks(ctx):
     result = random.choice(thanksList)
-    await tumble.say(result)
+    await bot.say(result)
     print("Thanks called!")
 
-@tumble.command(pass_context = True, name = "hi", aliases = ["hello","hiya","goodmorning","goodday","goodafternoon","goodevening"])
+@bot.command(pass_context = True, name = "hi", aliases = ["hello","hiya","goodmorning","goodday","goodafternoon","goodevening"])
 async def hi(ctx):
     result = random.choice(hiList)
-    await tumble.say(result)
+    await bot.say(result)
     print("Hi called!")
 
-@tumble.command(pass_context = True)
+@bot.command(pass_context = True)
 async def rigged(ctx):
-    await tumble.say("I am not! :triumph:")
+    await bot.say("I am not! :triumph:")
     print("Ping called!")    
     
-@tumble.command(pass_context = True)
+@bot.command(pass_context = True)
 async def ping(ctx):
-    await tumble.say("Pong! ♪")
+    await bot.say("Pong! ♪")
     print("Ping called!")
 
-tumble.remove_command('help')
+bot.remove_command('help')
 
-@tumble.command(pass_context = True)
+@bot.command(pass_context = True)
 async def help(ctx):
-    await tumble.whisper("""Hiiii! I'm Tumble, and I'm here to ensure that your party goes smoothly!
+    await bot.whisper("""Hiiii! I'm Samba, and I'm here to ensure that your party goes smoothly!
 It looks like Cassi Lite can't be around now... I'll do what I can in their place!
 Make sure you put a . before making a request for me, so that I know you're talking to me.
 
@@ -673,13 +668,13 @@ Wait... what kind of party is this again? ...Have fun anyway!
 ##        
 ##    dateString = nextWeeklyTime.strftime("%B %d!")
 ##    wholeMessage = "Current task:\n"+currWeekly+"\nFinish by the end of "+str(dateString)
-##    await tumble.send_message(channel,wholeMessage)
+##    await bot.send_message(channel,wholeMessage)
 ##
 
 
 
 
-##@tumble.command(pass_context = True)
+##@bot.command(pass_context = True)
 ##async def weekly(ctx):
 ##    await sendWeeklyMessage(ctx.message.channel);
     
@@ -690,12 +685,13 @@ Wait... what kind of party is this again? ...Have fun anyway!
 ######################################################
 #primarily for weekly reminders
 
+"""
 BG_TASK_INTERVAL = 300; #In seconds, how long the background task should sleep.
 
 async def background_task():
-    await tumble.wait_until_ready()
+    await bot.wait_until_ready()
 
-    while not tumble.is_closed:
+    while not bot.is_closed:
 
         #Get runtime, minus microseconds.
         runtime = datetime.datetime.now() - starttime
@@ -706,6 +702,7 @@ async def background_task():
         await sleep(BG_TASK_INTERVAL)
 
 
-tumble.loop.create_task(background_task())
+bot.loop.create_task(background_task())
+"""
 
-tumble.run(bot_token)
+bot.run(bot_token)
