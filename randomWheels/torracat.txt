@@ -1,20 +1,20 @@
-Player Loses Half Coins
-All Players Lose 20 Coins
-All Players Lose 10 Coins
-All Players Lose 10 Coins
-Player Loses 30 Coins
-Player Loses 20 Coins
-Player Loses 20 Coins
-Player Loses 10 Coins
-Player Loses 10 Coins
-Player Loses 10 Coins
-Player Loses Held Item
-Player Loses Held Item
-Player Pays 10 Coins to Last Place
-Player Pays 10 Coins to Last Place
-Item Shuffle
-Torracat Revolution
-All Players Go Backward
-Torracat Shuffle
-Player Loses 1 Star
-Torracat Pity
+Player Loses Half Coins|Hope you didn't have too many coins...
+All Players Lose 20 Coins|Hey! This is highway robbery!
+All Players Lose 10 Coins|Everyone!?
+All Players Lose 10 Coins|Everyone!?
+Player Loses 30 Coins|Now that's just pure evil!
+Player Loses 20 Coins|Aww come on! They worked hard for those!
+Player Loses 20 Coins|Aww come on! They worked hard for those!
+Player Loses 10 Coins|They didn't need a party tax!
+Player Loses 10 Coins|They didn't need a party tax!
+Player Loses 10 Coins|They didn't need a party tax!
+Player Loses Held Item|Aww, that's no fun!
+Player Loses Held Item|Aww, that's no fun!
+Player Pays 10 Coins to Last Place|Well, at least those coins are going to a good cause!~
+Player Pays 10 Coins to Last Place|Well, at least those coins are going to a good cause!~
+Item Shuffle|Ooooo!~ Now this might be fun!~
+Torracat Revolution|Everyone gets to share!~
+All Players Go Backward|Back! Back it up!~
+Torracat Shuffle|Where's everyone going to go!?~
+Player Loses 1 Star|Wait wait wait!! That's against the rules!! That's so unfair!!
+Torracat Pity|Phew! Looks like everything is going to be o-

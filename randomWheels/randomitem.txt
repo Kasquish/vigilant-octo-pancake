@@ -1,28 +1,28 @@
-Hammer
-Hammer
-Substitute Doll
-Substitute Doll
-Mushroom
-Mushroom
-Mushroom
-Mushroom
-Mini Mushroom
-Mini Mushroom
-Mini Mushroom
-Mini Mushroom
-Mega Mushroom
-Mega Mushroom
-Mega Mushroom
-Telescope
-Telescope
-Telescope
-Basin
-Basin
-Boulder
-Boulder
-Boulder
-Capsule
-Capsule
-Capsule
-Warp Pipe
-Warp Pipe
+Hammer|Looks like you're going to make a pancake really soon!~
+Hammer|Looks like you're going to make a pancake really soon!~
+Substitute Doll|It also works as a cuddle buddy until you need to use it!~
+Substitute Doll|It also works as a cuddle buddy until you need to use it!~
+Mushroom|Time to go fast!~ Whoooooooosh!~
+Mushroom|Time to go fast!~ Whoooooooosh!~
+Mushroom|Time to go fast!~ Whoooooooosh!~
+Mushroom|Time to go fast!~ Whoooooooosh!~
+Mini Mushroom|Awww, you're going to look so cute!~
+Mini Mushroom|Awww, you're going to look so cute!~
+Mini Mushroom|Awww, you're going to look so cute!~
+Mini Mushroom|Awww, you're going to look so cute!~
+Mega Mushroom|Seems like a very popular item around here!~
+Mega Mushroom|When you grow, can you tell me how's the weather up there?
+Mega Mushroom|When you grow, can you tell me how's the weather up there?
+Telescope|Adventuring in the other direction!~
+Telescope|Adventuring in the other direction!~
+Telescope|Adventuring in the other direction!~
+Basin|EEP! I better get out my umbrella for this one!
+Basin|EEP! I better get out my umbrella for this one!
+Boulder|I don't think Strength can move this boulder!~
+Boulder|I don't think Strength can move this boulder!~
+Boulder|I don't think Strength can move this boulder!~
+Capsule|Oooooo!~ It's a mystery item!~
+Capsule|Oooooo!~ It's a mystery item!~
+Capsule|Oooooo!~ I love surprises!~
+Warp Pipe|Give em the ol switcheroo!
+Warp Pipe|Give em the ol switcheroo!
