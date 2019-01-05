@@ -459,7 +459,7 @@ async def sportsball(ctx):
     
 ##### Luigi's Mansion #####
 
-@bot.command(pass_context = True, name = "boocoins", aliases = ["boocoinsteal"])
+@bot.command(pass_context = True, name = "boocoins", aliases = ["boocoinsteal","boocoin","boocoinssteal])
 async def boocoins(ctx):
     #5% chance of 1
     #20% chance of 5
@@ -640,7 +640,17 @@ async def help(ctx):
     print("Help called!")
 
 
+######################################################
+###################### ME ONLY  ######################
+######################################################
 
+@bot.command(pass_context = True, name = "ventriloquy")
+async def ventriloquy(ctx, args):
+    if ctx.message.author.id == "161982345207873536":
+        #First argument should be channel ID, second argument should be message IN QUOTES.
+        #Use those to send that message to that channel.
+        pass
+    print("Ventriloquy called!")    
 
 ######################################################
 ##################   WEEKLY QUESTS  ##################
