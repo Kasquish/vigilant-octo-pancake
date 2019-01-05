@@ -459,7 +459,7 @@ async def sportsball(ctx):
     
 ##### Luigi's Mansion #####
 
-@bot.command(pass_context = True, name = "boocoins", aliases = ["boocoinsteal","boocoin","boocoinssteal])
+@bot.command(pass_context = True, name = "boocoins", aliases = ["boocoinsteal","boocoin","boocoinssteal"])
 async def boocoins(ctx):
     #5% chance of 1
     #20% chance of 5
