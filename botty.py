@@ -38,6 +38,7 @@ restoreList = []
 #Lists of image names, from their respective folders.
 chanceList = []
 malieStarList = []
+boardtestList = []
 
 #Dictionaries matching each image to their respective Samba comment.
 chanceDict = {}
@@ -135,6 +136,10 @@ async def on_ready():
             resultA,resultB = line.split("|")
             if line:
                 malieStarDict[resultA] = resultB
+
+    for filename in os.listdir("boardtest"):
+        boardtestList.append(filename)
+    
     print("Lists prepared!")
 
     prevStarLoc = 0
@@ -629,7 +634,13 @@ async def squishtoy(ctx):
 async def restore(ctx):
     result = random.choice(restoreList)
     await bot.say(result)
-    print("Restore called!")    
+    print("Restore called!")
+
+@bot.command(pass_context = True, name = "boardtest", aliases = ["eventtest","eventest","sambatest"])
+async def boardtest(ctx):
+    result = random.choice(boardtestList)
+    await bot.upload("boardtest/"+result)
+    print("Boardtest called!")
     
 
 bot.remove_command('help')
