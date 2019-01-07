@@ -5,6 +5,7 @@ import discord
 import random
 import os
 import pickle
+#import psycopg2
 import time
 
 import sys, traceback
@@ -50,6 +51,8 @@ prevStarLoc = [-1]
 
 #Gets the bot token straight from heroku. You can't see it!
 bot_token = os.environ['BOT_TOKEN']
+#DATABASE_URL = os.environ['DATABASE_URL']
+#conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 #So we can check bot's uptime.
 starttime = datetime.datetime.now()
@@ -307,7 +310,7 @@ async def mining(ctx):
     resultB = "<:samba:530553475541499914> \"" + resultB + "\""
     if resultA == "Razor Claw":
         resultB += "\n<:Zuko:376248129734967296> *Shoves Samba aside.* \"Hey look at that! You got the best item in the game! Grats!\""
-    await bot.say(":samba: \"Dig!~ Dig!~ Diggy!~ Looks like you dug up...\"\n[ **"+  str(resultA)  +"** ]\n"+resultB)
+    await bot.say("<:samba:530553475541499914> \"Dig!~ Dig!~ Diggy!~ Looks like you dug up...\"\n[ **"+  str(resultA)  +"** ]\n"+resultB)
     print("Mining called!")
 
    
@@ -485,7 +488,7 @@ async def boocoins(ctx):
 async def randomitem(ctx):
     result = random.choice(randomitemList)
     resultA,resultB = result.split('|')
-    await bot.say("<:samba:530553475541499914> \"Looks like you're ending up with...\"\n[ **"+  str(resultA)  +"** ]\n:samba: \""+str(resultB)+"\"")
+    await bot.say("<:samba:530553475541499914> \"Looks like you're ending up with...\"\n[ **"+  str(resultA)  +"** ]\n<:samba:530553475541499914> \""+str(resultB)+"\"")
     print("randomitem called!")   
     
 @bot.command(pass_context = True, name = "maliewater", aliases = ["water","maliepond","narrowpath","malienarrowpath"])
