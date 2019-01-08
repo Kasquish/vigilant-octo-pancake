@@ -196,9 +196,9 @@ async def namaduSeeAllPlayerProfileRows(ctx):
         rows = sqlSelect("SELECT * FROM PlayerProfiles;")
         for i in rows:
             print(i);
-            bot.say("<:samba:530553475541499914> \"Go check your logs! Don't let them roll over you!~\"")
+            await bot.say("<:samba:530553475541499914> \"Go check your logs! Don't let them roll over you!~\"")
     else:
-        bot.say("<:samba:530553475541499914> \"Whoa, whoa, whoa, you're not Namadu! Careful, you could break something!~\"")
+        await bot.say("<:samba:530553475541499914> \"Whoa, whoa, whoa, you're not Namadu! Careful, you could break something!~\"")
 
 #####Initialize Table#####
 #  !!Namadu only!!
@@ -207,21 +207,21 @@ async def namaduCreatePlayerProfileTable(ctx):
     if ctx.message.author.id == "161982345207873536":
         sqlExecute("CREATE TABLE PlayerProfiles (id varchar PRIMARY KEY, name varchar, bankedCoins integer, bankedStars integer);")
     else:
-        bot.say("<:samba:530553475541499914> \"Whoa, whoa, whoa, you're not Namadu! Careful, you could break something!~\"")
+        await bot.say("<:samba:530553475541499914> \"Whoa, whoa, whoa, you're not Namadu! Careful, you could break something!~\"")
 
 #####New Player#####
 @bot.command(pass_context = True, name = "newPlayer")
 async def newPlayer(ctx,*args):
-    if not args:
-        bot.say("<:samba:530553475541499914> \"What's your name, buddy? \nTry like this: .newPlayer Samba the Maractus\"")
+    if len(args)==0:
+        await bot.say("<:samba:530553475541499914> \"What's your name, buddy? \nTry like this: .newPlayer Samba the Maractus\"")
         return
     dID = str(ctx.message.author.id)
     #Check if player already exists
     if sqlSelect("SELECT id FROM PlayerProfiles WHERE id='"+dID+"';"):
-        bot.say("<:samba:530553475541499914> \"Don't worry, I already have you listed as a player!\"")
+        await bot.say("<:samba:530553475541499914> \"Don't worry, I already have you listed as a player!\"")
     else:
         name = " ".join(args)
-        sqlExecute("INSERT INTO PlayerProfiles (id, name, bankedCoins, bankedStars) VALUES ('"+dID+"',"+name+",0,0);")
+        sqlExecute("INSERT INTO PlayerProfiles (id, name, bankedCoins, bankedStars) VALUES ('"+dID+"','"+name+"',0,0);")
 
 
 
