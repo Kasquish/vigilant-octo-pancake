@@ -712,6 +712,7 @@ async def whoareyou(ctx):
 @bot.command(pass_context = True, name = "squishtoy", aliases = ["squish","squishyou","squashtoy","squash","squashyou","flattentoy","flatten","flattenyou"])
 async def squishtoy(ctx):
     result = random.choice(squishtoyList)
+    result = result.replace("$%^","\n")
     await bot.say(result)
     print("Squishtoy called!")
 
