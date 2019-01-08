@@ -4,8 +4,8 @@ import datetime
 import discord
 import random
 import os
-import pickle
-#import psycopg2
+import pickle #Might not be needed, as pickles don't work so well here
+import psycopg2
 import time
 
 import sys, traceback
@@ -32,6 +32,7 @@ otherbonusList = []
 
 thanksList = []
 hiList = []
+byeList = []
 riggedList = []
 squishtoyList = []
 restoreList = []
@@ -52,7 +53,7 @@ prevStarLoc = [-1]
 #Gets the bot token straight from heroku. You can't see it!
 bot_token = os.environ['BOT_TOKEN']
 #DATABASE_URL = os.environ['DATABASE_URL']
-#conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 #So we can check bot's uptime.
 starttime = datetime.datetime.now()
@@ -74,9 +75,25 @@ def listFromFile(filename,listy):
             if line:
                 listy.append(line)
 
+#Helper function
+def sqlExecute(sql):
+    cur = conn.cursor()
+    cur.execute(sql)
+    conn.commit()
+    cur.close()
 
-
-
+def sqlSelect(sql):
+    resultSet = []
+    cur = conn.cursor()
+    cur.execute(sqlSelect)
+    try:
+        resultSet = cur.fetchAll()
+    except ProgrammingError:
+        print("sqlSelect called, but no result set returned by given sql")
+        print("\n"+sql)
+    cur.close()
+    return resultSet
+    
 
 
 
@@ -110,6 +127,7 @@ async def on_ready():
     
     listFromFile("randomTalk/thanks.txt",thanksList)
     listFromFile("randomTalk/hi.txt",hiList)
+    listFromFile("randomTalk/bye.txt",byeList)
     listFromFile("randomTalk/rigged.txt",riggedList)
     listFromFile("randomTalk/squishtoy.txt",squishtoyList)
     listFromFile("randomTalk/restore.txt",restoreList)
@@ -151,9 +169,45 @@ async def on_ready():
 
     print("Samba is ready!")
 
-    print(discord.__version__)
+    print("Discord.py version:", discord.__version__)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+######################################################
+################   PLAYER PROFILES   #################
+######################################################
+
+#####Initialize Table#####
+#  !!Namadu only!!
+@bot.command(pass_context = True)
+async def namaduCreatePlayerProfileTable(ctx):
+    if ctx.message.author.id == "161982345207873536":
+        sqlExecute("CREATE TABLE PlayerProfiles (id varchar PRIMARY KEY, name varchar, bankedCoins integer, bankedStars integer);")
+    else:
+        bot.say("<:samba:530553475541499914> \"Whoa, whoa, whoa, you're not Namadu! Careful, you could break something!\"")
+
+#####New Player#####
+@bot.command(pass_context = True, name = "newPlayer")
+async def newPlayer(ctx,*args):
+    dID = ctx.message.author.id
+    #Check if player already exists
+    if sqlSelect("SELECT id FROM PlayerProfiles WHERE id = "+dID+";"):
+        bot.say("<:samba:530553475541499914> \"Don't worry, I already have you listed as a player!\"")
+    else:
+        name = " ".join(args)
+        sqlExecute("INSERT INTO PlayerProfiles VALUES ("+dID+","+name+",0,0);")
+    
 
 
 ######################################################
@@ -598,6 +652,12 @@ async def wakeup(ctx):
 async def annoying(ctx):
     await bot.say("<:Zuko:376248129734967296> *Quickly runs by and smacks a strip of duct tape over Samba's mouth!*\n<:samba:530553475541499914> \"MMMMPH!?\"")
     print("Annoying called...")
+
+@bot.command(pass_context = True, name = "bye", aliases = ["farewell","goodbye","later","seeya"])
+async def bye(ctx):
+    result = random.choice(byeList)
+    await bot.say(result)
+    print("Bye called!")
 
 @bot.command(pass_context = True, name = "thanks", aliases = ["thankyou","gracias","arigato","arigatou"])
 async def thanks(ctx):
