@@ -190,6 +190,7 @@ async def on_ready():
 
 #####Get all player rows#####
 #  !!Namadu only!!
+@bot.command(pass_context = True)
 async def namaduSeeAllPlayerProfileRows(ctx):
     if ctx.message.author.id == "161982345207873536":
         rows = sqlSelect("SELECT * FROM PlayerProfiles;")
@@ -214,7 +215,7 @@ async def newPlayer(ctx,*args):
     if args == []:
         bot.say("<:samba:530553475541499914> \"What's your name, buddy? \nTry like this: .newPlayer Samba the Maractus\"")
         return
-    dID = ctx.message.author.id
+    dID = str(ctx.message.author.id)
     #Check if player already exists
     if sqlSelect("SELECT id FROM PlayerProfiles WHERE id = "+dID+";"):
         bot.say("<:samba:530553475541499914> \"Don't worry, I already have you listed as a player!\"")
