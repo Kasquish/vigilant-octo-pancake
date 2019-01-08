@@ -88,7 +88,7 @@ def sqlSelect(sql):
     cur.execute(sql)
     try:
         resultSet = cur.fetchAll()
-    except ProgrammingError:
+    except psycopg2.ProgrammingError:
         print("sqlSelect called, but no result set returned by given sql")
         print("\n"+sql)
     cur.close()
