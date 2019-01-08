@@ -85,7 +85,7 @@ def sqlExecute(sql):
 def sqlSelect(sql):
     resultSet = []
     cur = conn.cursor()
-    cur.execute(sqlSelect)
+    cur.execute(sql)
     try:
         resultSet = cur.fetchAll()
     except ProgrammingError:
@@ -188,6 +188,17 @@ async def on_ready():
 ################   PLAYER PROFILES   #################
 ######################################################
 
+#####Get all player rows#####
+#  !!Namadu only!!
+async def namaduSeeAllPlayerProfileRows(ctx):
+    if ctx.message.author.id == "161982345207873536":
+        rows = sqlSelect("SELECT * FROM PlayerProfiles;")
+        for i in rows:
+            print(i);
+            bot.say("<:samba:530553475541499914> \"Go check your logs! Don't let them roll over you!~\"")
+    else:
+        bot.say("<:samba:530553475541499914> \"Whoa, whoa, whoa, you're not Namadu! Careful, you could break something!~\"")
+
 #####Initialize Table#####
 #  !!Namadu only!!
 @bot.command(pass_context = True)
@@ -195,11 +206,14 @@ async def namaduCreatePlayerProfileTable(ctx):
     if ctx.message.author.id == "161982345207873536":
         sqlExecute("CREATE TABLE PlayerProfiles (id varchar PRIMARY KEY, name varchar, bankedCoins integer, bankedStars integer);")
     else:
-        bot.say("<:samba:530553475541499914> \"Whoa, whoa, whoa, you're not Namadu! Careful, you could break something!\"")
+        bot.say("<:samba:530553475541499914> \"Whoa, whoa, whoa, you're not Namadu! Careful, you could break something!~\"")
 
 #####New Player#####
 @bot.command(pass_context = True, name = "newPlayer")
 async def newPlayer(ctx,*args):
+    if args == []:
+        bot.say("<:samba:530553475541499914> \"What's your name, buddy? \nTry like this: .newPlayer Samba the Maractus\"")
+        return
     dID = ctx.message.author.id
     #Check if player already exists
     if sqlSelect("SELECT id FROM PlayerProfiles WHERE id = "+dID+";"):
@@ -207,7 +221,8 @@ async def newPlayer(ctx,*args):
     else:
         name = " ".join(args)
         sqlExecute("INSERT INTO PlayerProfiles VALUES ("+dID+","+name+",0,0);")
-    
+
+
 
 
 ######################################################
