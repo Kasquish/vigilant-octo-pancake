@@ -217,7 +217,7 @@ async def newPlayer(ctx,*args):
         return
     dID = str(ctx.message.author.id)
     #Check if player already exists
-    if sqlSelect("SELECT id FROM PlayerProfiles WHERE id = \""+dID+"\";"):
+    if sqlSelect("SELECT id FROM PlayerProfiles WHERE id='"+dID+"';"):
         bot.say("<:samba:530553475541499914> \"Don't worry, I already have you listed as a player!\"")
     else:
         name = " ".join(args)
