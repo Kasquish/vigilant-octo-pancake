@@ -52,7 +52,7 @@ prevStarLoc = [-1]
 
 #Gets the bot token straight from heroku. You can't see it!
 bot_token = os.environ['BOT_TOKEN']
-#DATABASE_URL = os.environ['DATABASE_URL']
+DATABASE_URL = os.environ['DATABASE_URL']
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 #So we can check bot's uptime.
