@@ -212,7 +212,7 @@ async def namaduCreatePlayerProfileTable(ctx):
 #####New Player#####
 @bot.command(pass_context = True, name = "newPlayer")
 async def newPlayer(ctx,*args):
-    if args == []:
+    if not args:
         bot.say("<:samba:530553475541499914> \"What's your name, buddy? \nTry like this: .newPlayer Samba the Maractus\"")
         return
     dID = str(ctx.message.author.id)
@@ -221,7 +221,7 @@ async def newPlayer(ctx,*args):
         bot.say("<:samba:530553475541499914> \"Don't worry, I already have you listed as a player!\"")
     else:
         name = " ".join(args)
-        sqlExecute("INSERT INTO PlayerProfiles VALUES (\""+dID+"\","+name+",0,0);")
+        sqlExecute("INSERT INTO PlayerProfiles VALUES ('"+dID+"',"+name+",0,0);")
 
 
 
