@@ -204,7 +204,7 @@ async def namaduSeeAllPlayerProfileRows(ctx):
 #####Initialize Table#####
 #  !!Namadu only!!
 @bot.command(pass_context = True)
-;/async def namaduCreateSambaStatusTable(ctx):
+async def namaduCreateSambaStatusTable(ctx):
     if ctx.message.author.id == "161982345207873536":
         sqlExecute("CREATE TABLE SambaStatus (id varchar PRIMARY KEY, setting varchar);")
     else:
@@ -240,7 +240,7 @@ async def newPlayer(ctx,*args):
         await bot.say("<:samba:530553475541499914> \"Whoops, that didn't work... Try again, maybe? Or ask Namadu about it!\"")
 
 #####Change Player Name#####
- @bot.command(pass_context = True, name = "changePlayerName")
+@bot.command(pass_context = True, name = "changePlayerName")
 async def changePlayerName(ctx,*args):
     try:
         dID = str(ctx.message.author.id)
