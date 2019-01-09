@@ -277,7 +277,7 @@ async def changePlayerName(ctx,*args):
             elif "'" in name or "\\" in name or '"' in name or "<" in name or ">" in name or ":" in name:
                 await bot.say("<:samba:530553475541499914> \"Hmm... it looks like I can't any of these characters in your name: \" ' \ < > : \nSorry... Hey, why don't you try a different one?~\"")
             else:
-            matchingName = sqlSelect("SELECT id, name FROM PlayerProfiles WHERE name='"+name+"';")
+                matchingName = sqlSelect("SELECT id, name FROM PlayerProfiles WHERE name='"+name+"';")
                 if matchingName:
                     if matchingName[0][0] == dID:
                         await bot.say("<:samba:530553475541499914> \"Okay! Your name has been changed from "+name+" to... uh... "+name+"?\"")
