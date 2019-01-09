@@ -250,8 +250,16 @@ async def newPlayer(ctx,*args):
             await bot.say("<:samba:530553475541499914> \"Don't worry, I already have you listed as a player!\"")
         else:
             name = " ".join(args)
-            sqlExecute("INSERT INTO PlayerProfiles (id, name, bankedCoins, bankedStars) VALUES ('"+dID+"','"+name+"',0,0);")
-            await bot.say("<:samba:530553475541499914> \""+name+", you're now registered! Welcome to Pokémon Party!\"")
+            if name.strip("1234567890"):
+                await bot.say("<:samba:530553475541499914> \"Hey, I can't give you a name like that! You're more than just a number!\"")
+            elif "'" in name or "\\" in name or '"' in name or "<" in name or ">" in name or ":" in name:
+                await bot.say("<:samba:530553475541499914> \"Hmm... it looks like I can't any of these characters in your name: \" ' \ < > : \nSorry... Hey, why don't you try a different one?~\"")
+            else:
+                if sqlSelect("SELECT name FROM PlayerProfiles WHERE name='"+name+"';"):
+                    await bot.say("<:samba:530553475541499914> \"Sorry, looks like someone else already has that name. Try a different one!\"")
+                else:
+                    sqlExecute("INSERT INTO PlayerProfiles (id, name, bankedCoins, bankedStars) VALUES ('"+dID+"','"+name+"',0,0);")
+                    await bot.say("<:samba:530553475541499914> \""+name+", you're now registered! Welcome to Pokémon Party!\"")
     except (psycopg2.InternalError, psycopg2.OperationalError) as e:
         await bot.say("<:samba:530553475541499914> \"Whoops, that didn't work... Try again, maybe? Or ask Namadu about it!\"")
 
@@ -264,8 +272,20 @@ async def changePlayerName(ctx,*args):
             await bot.say("<:samba:530553475541499914> \"Hmm, I don't have you listed as a player yet...\nTry this: .newPlayer Your Name Here\"")
         else:
             name = " ".join(args)
-            sqlExecute("UPDATE PlayerProfiles SET name = '"+name+"' WHERE id = '"+dID+"';")
-            await bot.say("<:samba:530553475541499914> \"Okay! From now on, I'll call you "+name+"!~\"")
+            if name.strip("1234567890"):
+                await bot.say("<:samba:530553475541499914> \"Hey, I can't give you a name like that! You're more than just a number!\"")
+            elif "'" in name or "\\" in name or '"' in name or "<" in name or ">" in name or ":" in name:
+                await bot.say("<:samba:530553475541499914> \"Hmm... it looks like I can't any of these characters in your name: \" ' \ < > : \nSorry... Hey, why don't you try a different one?~\"")
+            else:
+            matchingName = sqlSelect("SELECT id, name FROM PlayerProfiles WHERE name='"+name+"';")
+                if matchingName:
+                    if matchingName[0][0] == dID:
+                        await bot.say("<:samba:530553475541499914> \"Okay! Your name has been changed from "+name+" to... uh... "+name+"?\"")
+                    else:
+                        await bot.say("<:samba:530553475541499914> \"Sorry, looks like someone else already has that name. Try a different one!\"")
+                else:
+                    sqlExecute("UPDATE PlayerProfiles SET name = '"+name+"' WHERE id = '"+dID+"';")
+                    await bot.say("<:samba:530553475541499914> \"Okay! From now on, I'll call you "+name+"!~\"")
     except (psycopg2.InternalError, psycopg2.OperationalError) as e:
         await bot.say("<:samba:530553475541499914> \"Whoops, that didn't work... Try again, maybe? Or ask Namadu about it!\"")
       

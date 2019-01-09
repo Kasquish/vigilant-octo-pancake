@@ -1,0 +1,18 @@
+Before game:
+
+
+
+During game:
+-All commands that can be called by a user on their turn can ALSO be called by the host, in case the user is AFK or something.
+-When a command is successfully called, Samba will just make a "reaction" to the caller, so as to not interrupt the flow of the game.
+-All commands will call a helper function, gameChange. Commands will pass in a list of strings to gameChange, each string representing the database changes made by that command. For example, the hammer command might call it with these strings:
+["Namadu:CoinsGained:27",
+"Epic Umbreon:CoinsLost:27",
+"Namadu:ItemChange:Hammer:Nothing",
+"Namadu:SquishedOthers",
+"EpicUmbreon:Squished",
+"EpicUmbreon:SquishedByItem"]
+gameChange will interpret each string in turn, then make the needed changes to the database.
+gameChange will also store this list in a temporary variable.
+When gameUndo is called by the host, the stored strings will be interpreted in reverse, so the reverse of each change is done.
+(For clarity, Samba will actually make a post about which command has been undone. Thus, a brief summary of the command should also be stored.)
