@@ -250,7 +250,7 @@ async def newPlayer(ctx,*args):
             await bot.say("<:samba:530553475541499914> \"Don't worry, I already have you listed as a player!\"")
         else:
             name = " ".join(args)
-            if name.strip("1234567890"):
+            if not name.strip("1234567890"):
                 await bot.say("<:samba:530553475541499914> \"Hey, I can't give you a name like that! You're more than just a number!\"")
             elif "'" in name or "\\" in name or '"' in name or "<" in name or ">" in name or ":" in name:
                 await bot.say("<:samba:530553475541499914> \"Hmm... it looks like I can't any of these characters in your name: \" ' \ < > : \nSorry... Hey, why don't you try a different one?~\"")
@@ -272,7 +272,7 @@ async def changePlayerName(ctx,*args):
             await bot.say("<:samba:530553475541499914> \"Hmm, I don't have you listed as a player yet...\nTry this: .newPlayer Your Name Here\"")
         else:
             name = " ".join(args)
-            if name.strip("1234567890"):
+            if not name.strip("1234567890"):
                 await bot.say("<:samba:530553475541499914> \"Hey, I can't give you a name like that! You're more than just a number!\"")
             elif "'" in name or "\\" in name or '"' in name or "<" in name or ">" in name or ":" in name:
                 await bot.say("<:samba:530553475541499914> \"Hmm... it looks like I can't any of these characters in your name: \" ' \ < > : \nSorry... Hey, why don't you try a different one?~\"")
