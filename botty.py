@@ -93,6 +93,7 @@ def sqlSelect(sql):
         print("\n"+sql)
     cur.close()
     return resultSet
+
     
 
 
@@ -202,12 +203,22 @@ async def namaduSeeAllPlayerProfileRows(ctx):
 
 #####Initialize Table#####
 #  !!Namadu only!!
+@bot.command(pass_context = True)
+;/async def namaduCreateSambaStatusTable(ctx):
+    if ctx.message.author.id == "161982345207873536":
+        sqlExecute("CREATE TABLE SambaStatus (id varchar PRIMARY KEY, setting varchar);")
+    else:
+        await bot.say("<:samba:530553475541499914> \"Whoa, whoa, whoa, you're not Namadu! Careful, you could break something!~\"")
+
+#####Initialize Table#####
+#  !!Namadu only!!
 #@bot.command(pass_context = True)
 #async def namaduCreatePlayerProfileTable(ctx):
 #    if ctx.message.author.id == "161982345207873536":
 #        sqlExecute("CREATE TABLE PlayerProfiles (id varchar PRIMARY KEY, name varchar, bankedCoins integer, bankedStars integer);")
 #    else:
 #        await bot.say("<:samba:530553475541499914> \"Whoa, whoa, whoa, you're not Namadu! Careful, you could break something!~\"")
+
 
 #####New Player#####
 @bot.command(pass_context = True, name = "newPlayer")
@@ -228,7 +239,20 @@ async def newPlayer(ctx,*args):
     except (psycopg2.InternalError, psycopg2.OperationalError) as e:
         await bot.say("<:samba:530553475541499914> \"Whoops, that didn't work... Try again, maybe? Or ask Namadu about it!\"")
 
-                          
+#####Change Player Name#####
+ @bot.command(pass_context = True, name = "changePlayerName")
+async def changePlayerName(ctx,*args):
+    try:
+        dID = str(ctx.message.author.id)
+        if not sqlSelect("SELECT id FROM PlayerProfiles WHERE id='"+dID+"';"):
+            await bot.say("<:samba:530553475541499914> \"Hmm, I don't have you listed as a player yet...\nTry this: .newPlayer Your Name Here\"")
+        else:
+            name = " ".join(args)
+            sqlExecute("UPDATE PlayerProfiles SET name = '"+name+"' WHERE id = '"+dID+"';")
+            await bot.say("<:samba:530553475541499914> \"Okay! From now on, I'll call you "+name+"!~\"")
+    except (psycopg2.InternalError, psycopg2.OperationalError) as e:
+        await bot.say("<:samba:530553475541499914> \"Whoops, that didn't work... Try again, maybe? Or ask Namadu about it!\"")
+      
         
 
 
