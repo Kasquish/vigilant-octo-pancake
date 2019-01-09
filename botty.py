@@ -203,10 +203,18 @@ async def namaduSeeAllPlayerProfileRows(ctx):
 
 #####Initialize Table#####
 #  !!Namadu only!!
+#@bot.command(pass_context = True)
+#async def namaduCreateSambaStatusTable(ctx):
+#    if ctx.message.author.id == "161982345207873536":
+#        sqlExecute("CREATE TABLE SambaStatus (id varchar PRIMARY KEY, setting varchar);")
+#    else:
+#        await bot.say("<:samba:530553475541499914> \"Whoa, whoa, whoa, you're not Namadu! Careful, you could break something!~\"")
+#####Initialize Table#####
+#  !!Namadu only!!
 @bot.command(pass_context = True)
-async def namaduCreateSambaStatusTable(ctx):
+async def namaduAddSquishedStatus(ctx):
     if ctx.message.author.id == "161982345207873536":
-        sqlExecute("CREATE TABLE SambaStatus (id varchar PRIMARY KEY, setting varchar);")
+        sqlExecute("INSERT INTO SambaStatus (id, setting) VALUES ('Squished','No');")
     else:
         await bot.say("<:samba:530553475541499914> \"Whoa, whoa, whoa, you're not Namadu! Careful, you could break something!~\"")
 
@@ -735,15 +743,29 @@ async def whoareyou(ctx):
 
 @bot.command(pass_context = True, name = "squishtoy", aliases = ["squish","squishyou","squashtoy","squash","squashyou","flattentoy","flatten","flattenyou"])
 async def squishtoy(ctx):
-    result = random.choice(squishtoyList)
-    result = result.replace("$%^","\n")
-    await bot.say(result)
+    if sqlSelect("SELECT id, setting FROM SambaStatus WHERE id = 'Squished'")[0][1] == "Yes":
+        await bot.say("*As you go to look for Samba, you accidently step on her as if she was a rug going unnoticed. Looks like someone already flattened her!*")
+    else:
+        result = random.choice(squishtoyList)
+        result = result.replace("$%^","\n")
+        await bot.say(result)
+        try:
+            sqlExecute("UPDATE SambaStatus SET setting = 'Yes' WHERE id = 'Squished';")
+        except (psycopg2.InternalError, psycopg2.OperationalError) as e:
+            print("But she didn't flatten...")
     print("Squishtoy called!")
 
 @bot.command(pass_context = True, name = "restore", aliases = ["unsquish","unsquishyou","unsquash","unsquashyou","unflatten","unflattenyou"])
 async def restore(ctx):
-    result = random.choice(restoreList)
-    await bot.say(result)
+    if sqlSelect("SELECT id, setting FROM SambaStatus WHERE id = 'Squished'")[0][1] == "No":
+        await bot.say("*You awkwardly look at Samba as if expecting to do something with her, but she currently isn't in a flattened state.*")
+    else:
+        result = random.choice(restoreList)
+        await bot.say(result)
+        try:
+            sqlExecute("UPDATE SambaStatus SET setting = 'No' WHERE id = 'Squished';")
+        except (psycopg2.InternalError, psycopg2.OperationalError) as e:
+            print("But she didn't restore...")
     print("Restore called!")
 
 @bot.command(pass_context = True, name = "boardtest", aliases = ["eventtest","eventest","sambatest"])
