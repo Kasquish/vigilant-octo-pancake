@@ -192,6 +192,13 @@ async def on_ready():
 #####Get all player rows#####
 #  !!Namadu only!!
 @bot.command(pass_context = True)
+async def namaduEchoPrint(ctx,arg1):
+    if ctx.message.author.id == "161982345207873536":
+        print (arg1)
+    else:
+        await bot.say("<:samba:530553475541499914> \"Whoa, whoa, whoa, you're not Namadu! Careful, you could break something!~\"")
+
+@bot.command(pass_context = True)
 async def namaduSeeAllPlayerProfileRows(ctx):
     if ctx.message.author.id == "161982345207873536":
         rows = sqlSelect("SELECT * FROM PlayerProfiles;")
@@ -200,6 +207,7 @@ async def namaduSeeAllPlayerProfileRows(ctx):
         await bot.say("<:samba:530553475541499914> \"Go check your logs! Don't let them roll over you!~\"")
     else:
         await bot.say("<:samba:530553475541499914> \"Whoa, whoa, whoa, you're not Namadu! Careful, you could break something!~\"")
+
 
 #####Initialize Table#####
 #  !!Namadu only!!
