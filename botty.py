@@ -783,7 +783,7 @@ async def squishtoy(ctx):
             print("But she didn't flatten...")
     print("Squishtoy called!")
 
-@bot.command(pass_context = True, name = "restore", aliases = ["unsquish","unsquishyou","unsquash","unsquashyou","unflatten","unflattenyou"])
+@bot.command(pass_context = True, name = "restore", aliases = ["unsquish","unsquishyou","unsquash","unsquashyou","unflatten","unflattenyou","recover"])
 async def restore(ctx):
     if sqlSelect("SELECT id, setting FROM SambaStatus WHERE id = 'Squished'")[0][1] == "No":
         await bot.say("*You awkwardly look at Samba as if expecting to do something with her, but she currently isn't in a flattened state.*")
